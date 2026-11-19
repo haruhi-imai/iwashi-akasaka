@@ -3,76 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="赤坂見附駅から徒歩1分。ポーカーハウス いわし赤坂の営業時間、アクセス、イベント情報をまとめた来店ガイド。">
-  <meta name="theme-color" content="#ffffff">
-  <title>いわし赤坂 | Poker House 来店ガイド</title>
+  <meta name="description" content="Poker House いわし赤坂の来店ガイド。今日と近日の大会、受付締切、リングゲームの料金、初参加の流れ、赤坂見附駅からのアクセス。">
+  <meta name="theme-color" content="#182d4a">
+  <title>Poker House いわし赤坂｜大会スケジュール・料金・来店案内</title>
   <link rel="icon" href="assets/mark.png">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="intro.js?v=hd" defer></script>
+  <link rel="preload" href="assets/blue-poker-table.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/fish-print.png" as="image">
+  <link rel="stylesheet" href="style.css?v=guide">
+  <script>
+    if (!location.hash && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("intro-pending");
+      setTimeout(() => document.documentElement.classList.remove("intro-pending"), 1800);
+    }
+  </script>
+  <script src="intro.js?v=guide" defer></script>
+  <script src="schedule.js?v=guide" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">本文へ移動</a>
   <header class="header">
     <div class="wrap bar">
-      <a class="brand" href="#main"><span lang="en">IWASHI</span><span>いわし赤坂</span></a>
+      <a class="brand" href="#main" aria-label="Poker House いわし赤坂 トップ">
+        <img src="assets/fish-print.png" alt="" width="445" height="143">
+        <span><small lang="en">POKER HOUSE</small><strong>いわし赤坂</strong></span>
+      </a>
       <nav aria-label="メインナビゲーション">
-        <a href="#games">ゲーム</a>
-        <a href="#visit">店舗情報</a>
-        <a href="https://x.com/iwashi_poker">公式X</a>
+        <a href="#schedule">大会</a><a href="#first-visit">初めての方へ</a><a href="#games">料金</a><a href="#visit">アクセス</a>
       </nav>
     </div>
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="title">
-      <video id="fv-video" class="hero-video" poster="assets/iwashi-fv-poster.png?v=hd" width="2560" height="1440" muted playsinline preload="none" aria-hidden="true"></video>
-      <div class="hero-layout wrap">
-        <div class="hero-copy">
-          <h1 id="title"><span lang="en">Poker House</span> いわし赤坂</h1>
-          <p class="lead">赤坂見附｜リングゲーム・トーナメント</p>
+      <h1 id="title" class="visually-hidden">Poker House いわし赤坂</h1>
+      <div class="hero-table">
+        <div class="hero-art">
+          <img class="hero-photo" src="assets/blue-poker-table.webp" width="1672" height="941" alt="青い卓に白いいわしと「There are plenty of fish in the sea」の文字" fetchpriority="high">
+          <img class="hero-felt hero-print" src="assets/felt-patch.png" width="445" height="143" alt="">
         </div>
-        <div class="hero-actions">
-          <a class="button" href="#games">初めての方へ</a>
-          <a class="button" href="https://x.com/iwashi_poker">大会スケジュール</a>
+        <img class="hero-fish hero-print" src="assets/fish-print.png" width="445" height="143" alt="">
+        <nav class="hero-actions" aria-label="ポーカーのご案内">
+          <a class="button" href="#first-visit">初めての方へ <span aria-hidden="true">→</span></a>
+          <a class="button" href="#schedule">大会スケジュール <span aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="schedule section wrap" id="schedule" aria-labelledby="schedule-title">
+      <div class="section-heading">
+        <div><p class="kicker" lang="en">Tournament calendar</p><h2 id="schedule-title">大会スケジュール</h2></div>
+        <a class="text-link" href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗の大会カレンダー <span aria-hidden="true">↗</span></a>
+      </div>
+      <div id="calendar" aria-live="polite"><p>開催日・参加費・受付締切は<a href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗の大会カレンダー</a>で確認できます。</p></div>
+      <p class="note" id="calendar-updated"></p>
+    </section>
+
+    <section class="first-band" id="first-visit" aria-labelledby="first-title">
+      <div class="wrap section split">
+        <div class="side-heading"><p class="kicker" lang="en">First visit</p><h2 id="first-title">初めての方へ</h2><p>いわしの大会で遊べるテキサスホールデムは、自分だけの2枚と全員に共通の5枚を使い、最も強い5枚の組み合わせを競うポーカーです。</p></div>
+        <div>
+          <ol class="steps">
+            <li><h3>遊び方と予算を選ぶ</h3><p>好きなタイミングで参加するリングゲームと、決まった時刻に始まる大会があります。<a href="#games">ゲーム・料金を見る</a></p></li>
+            <li><h3>参加枠を確認する</h3><p><a href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗カレンダー</a>で日程を選び、各回の「参加予約」から申し込めます。当日の空席、予約の要否、初心者講習については<a href="tel:+81355455654">店舗に電話</a>でご確認ください。</p></li>
+            <li><h3>黛ビル3階で受付する</h3><p>PokerFansで予約した方は、受付でポーカーIDとニックネームをお伝えください。大会は初回受付の締切を確認してからお越しください。</p></li>
+          </ol>
         </div>
       </div>
     </section>
-    <div class="games-band">
-      <section class="wrap games" id="games" aria-labelledby="games-title">
-        <div class="game-copy">
-          <p class="kicker" lang="en">THE GAMES</p>
-          <h2 id="games-title">初めての方へ</h2>
-          <dl class="game-list">
-            <div><dt>トーナメント</dt><dd>開催日、開始時刻、参加費は店舗の公式Xでご確認ください。</dd></div>
-            <div><dt>ポイントリング</dt><dd>当日の稼働状況や参加条件は店舗にお問い合わせください。</dd></div>
-          </dl>
-        </div>
-        <figure class="game-photo">
-          <img src="assets/poker-table.jpg" width="1240" height="840" loading="lazy" alt="緑のポーカーテーブルに積まれた赤と緑のチップ">
-          <figcaption>ポーカーのイメージ写真</figcaption>
-        </figure>
-      </section>
-    </div>
+
+    <section class="wrap section" id="games" aria-labelledby="games-title">
+      <div class="section-heading"><div><p class="kicker" lang="en">Games &amp; fees</p><h2 id="games-title">ゲーム・料金</h2></div></div>
+      <div class="fee-grid">
+        <article><h3>リングゲーム</h3><p>空席のある卓に途中から参加し、自分のタイミングで終了できる形式です。大会の進行により卓が開かない場合があります。</p>
+          <dl class="rates"><div><dt>0.5–1卓・50点</dt><dd>5,000円</dd></div><div><dt>1–2卓・100点</dt><dd>10,000円</dd></div></dl>
+          <p class="budget">来店予算の例 <strong>6,200<small>円〜</small></strong></p><p class="note">2026年11月19日の0.5–1卓で50点を選ぶ場合。5,000円＋チャージ600円＋ドリンク600円〜。</p>
+          <a class="text-link" href="https://pokerfans.jp/events/2502461?_lang=ja">店舗のリング料金表 <span aria-hidden="true">↗</span></a>
+        </article>
+        <article><h3>トーナメント</h3><p>大会ごとの参加費で所定のチップを受け取り、順位を競います。開始時刻を過ぎても、初回受付の締切までは参加できる大会があります。</p>
+          <dl class="rates"><div><dt>通常参加費</dt><dd>大会ごとに設定</dd></div><div><dt>チャージ＋ドリンクの例</dt><dd>1,200円〜</dd></div></dl>
+          <p class="budget">来店予算の例 <strong>23,200<small>円〜</small></strong></p><p class="note">2026年11月19日「MONSTER STACK 500K」の通常参加費22,000円＋チャージ600円＋ドリンク600円〜。割引・再参加は大会別です。</p>
+          <a class="text-link" href="https://pokerfans.jp/events/2524820?_lang=ja">この大会の料金内訳 <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
     <section class="visit" id="visit" aria-labelledby="visit-title">
-      <div class="wrap visit-grid">
-        <div>
-          <p class="kicker" lang="en">VISIT</p>
-          <h2 id="visit-title">店舗情報</h2>
-          <p class="visit-lead">赤坂見附駅から徒歩1分</p>
-          <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%823-10-3%20%E9%BB%9B%E3%83%93%E3%83%AB">Google マップで開く</a>
-        </div>
-        <div>
-          <dl class="info">
-            <div><dt>住所</dt><dd>東京都港区赤坂3-10-3 黛ビル3F</dd></div>
-            <div><dt>営業時間</dt><dd>平日 17:00〜翌5:00<br>土日 13:00〜翌5:00</dd></div>
-            <div><dt>電話</dt><dd><a href="tel:+81355455654">03-5545-5654</a></dd></div>
-          </dl>
-          <p class="note">当日の営業時間・参加条件は<a href="https://x.com/iwashi_poker">店舗の公式X</a>でご確認ください。</p>
+      <div class="wrap section">
+        <div class="section-heading"><div><p class="kicker" lang="en">Access</p><h2 id="visit-title">店舗情報・アクセス</h2></div></div>
+        <div class="access-grid">
+          <div>
+            <h3>赤坂見附駅から徒歩1分</h3>
+            <dl class="info">
+              <div><dt>住所</dt><dd>東京都港区赤坂3-10-3 黛ビル3F</dd></div>
+              <div><dt>営業時間</dt><dd>平日 17:00〜翌5:00<br>土日 13:00〜翌5:00</dd></div>
+              <div><dt>お問い合わせ</dt><dd><a href="tel:+81355455654">03-5545-5654</a><br><a href="mailto:iwashi.poker@gmail.com">iwashi.poker@gmail.com</a></dd></div>
+              <div><dt>営業のお知らせ</dt><dd><a href="https://x.com/iwashi_poker">店舗公式X（@iwashi_poker）</a></dd></div>
+            </dl>
+          </div>
+          <div class="map">
+            <iframe title="赤坂見附駅近く、黛ビルの地図" src="https://maps.google.com/maps?q=東京都港区赤坂3-10-3黛ビル&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=東京都港区赤坂3-10-3+黛ビル">Google マップで開く <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <div class="wrap foot"><span>いわし赤坂 来店ガイド</span><a href="https://x.com/iwashi_poker">店舗公式X</a></div>
-  </footer>
+  <footer class="footer"><div class="wrap foot"><span>Poker House いわし赤坂　来店ガイド</span><a href="#main">ページの先頭へ ↑</a></div></footer>
 </body>
 </html>

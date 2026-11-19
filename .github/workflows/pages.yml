@@ -1,0 +1,37 @@
+name: Publish visitor guide
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: iwashi-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh the shop calendar
+        run: python3 scripts/update-calendar.py
+      - name: Check and assemble the site
+        run: |
+          node --check intro.js
+          node --check schedule.js
+          mkdir -p dist/assets
+          cp index.html style.css intro.js schedule.js schedule.json .nojekyll dist/
+          cp assets/{blue-poker-table.webp,fish-print.png,felt-patch.png,mark.png} dist/assets/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4

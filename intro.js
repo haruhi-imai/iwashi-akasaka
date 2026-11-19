@@ -1,29 +1,25 @@
-const video = document.getElementById("fv-video");
-const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const root = document.documentElement;
+const hero = document.querySelector(".hero");
+const preference = matchMedia("(prefers-reduced-motion: reduce)");
 
-if (video && !motion.matches) {
-  const hero = video.closest(".hero");
-  const whiteFrameTime = 2.35;
-
-  function updateTextColor(time) {
-    hero.classList.toggle("has-light-frame", time >= whiteFrameTime);
-  }
-
-  if (typeof video.requestVideoFrameCallback === "function") {
-    const updateFrame = (_, frame) => {
-      updateTextColor(frame.mediaTime);
-      if (frame.mediaTime < whiteFrameTime) video.requestVideoFrameCallback(updateFrame);
-    };
-    video.requestVideoFrameCallback(updateFrame);
-  } else {
-    video.addEventListener("timeupdate", () => updateTextColor(video.currentTime));
-  }
-
-  video.addEventListener("ended", () => updateTextColor(video.currentTime), { once: true });
-  video.muted = true;
-  video.src = "assets/iwashi-fv.mp4?v=hd";
-  video.play().catch(() => {
-    video.removeAttribute("src");
-    video.load();
-  });
+function finishIntro() {
+  root.classList.remove("intro-pending");
+  hero.classList.remove("is-intro");
 }
+
+async function startIntro() {
+  try {
+    await Promise.all([...hero.querySelectorAll("img")].map(image => image.decode()));
+    if (!root.classList.contains("intro-pending") || preference.matches) return;
+    hero.classList.add("is-intro");
+    window.setTimeout(finishIntro, 2010);
+  } catch {
+    finishIntro();
+  } finally {
+    root.classList.remove("intro-pending");
+  }
+}
+
+if (root.classList.contains("intro-pending")) startIntro();
+preference.addEventListener("change", finishIntro);
+hero.querySelector(".hero-actions").addEventListener("focusin", finishIntro);
