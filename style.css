@@ -50,11 +50,24 @@ img { display: block; }
 .hero-art, .hero-photo { width: 100%; height: 100%; }
 .hero-art { position: absolute; inset: 0; }
 .hero-print { position: absolute; left: var(--print-left); top: var(--print-top); width: var(--print-width); height: auto; display: none; pointer-events: none; }
-.hero-fish { z-index: 1; }
+.hero-fish { z-index: 1; display: block; aspect-ratio: 445 / 143; }
+.hero-fish img { width: 100%; height: 100%; visibility: hidden; }
+.fish-name {
+  position: absolute;
+  bottom: calc(100% + clamp(6px, .7vw, 12px));
+  width: 100%;
+  color: #fffaf0;
+  font: 700 clamp(17px, 1.8vw, 30px)/1.15 "Hiragino Sans", "Yu Gothic", sans-serif;
+  letter-spacing: .12em;
+  text-indent: .12em;
+  text-align: center;
+  text-shadow: 0 1px 4px #172d4e;
+}
+.intro-pending .hero-fish { visibility: hidden; }
 .intro-pending .hero-art, .intro-pending .hero-actions { visibility: hidden; }
 .hero.is-intro .hero-art { animation: table-reveal 2s both; }
-.hero.is-intro .hero-fish { display: block; animation: fish-approach 2s both, handoff 2s step-end both; }
-.hero.is-intro .hero-felt { display: block; animation: handoff 2s step-end both; }
+.hero.is-intro .hero-fish { animation: fish-approach 2s both; }
+.hero.is-intro .hero-fish img, .hero.is-intro .hero-felt { display: block; animation: handoff 2s step-end both; }
 .hero.is-intro .hero-actions { animation: actions-reveal 2s both; }
 @keyframes table-reveal {
   0%, 14% { opacity: 0; }
@@ -73,7 +86,9 @@ img { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .intro-pending .hero-art, .intro-pending .hero-actions { visibility: visible; }
   .hero.is-intro .hero-art, .hero.is-intro .hero-actions { animation: none; }
-  .hero.is-intro .hero-print, .intro-pending .hero-fish { display: none; }
+  .hero.is-intro .hero-fish { animation: none; }
+  .intro-pending .hero-fish { visibility: visible; }
+  .hero.is-intro .hero-fish img, .hero.is-intro .hero-felt { display: none; }
 }
 .section { padding-block: clamp(3.25rem,6vw,6rem); scroll-margin-top: 1rem; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem; }

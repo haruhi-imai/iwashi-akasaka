@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/mark.png">
   <link rel="preload" href="assets/blue-poker-table.webp" as="image" fetchpriority="high">
   <link rel="preload" href="assets/fish-print.png" as="image">
-  <link rel="stylesheet" href="style.css?v=guide">
+  <link rel="stylesheet" href="style.css?v=guide-fish">
   <script>
     if (!location.hash && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("intro-pending");
@@ -40,7 +40,10 @@
           <img class="hero-photo" src="assets/blue-poker-table.webp" width="1672" height="941" alt="青い卓に白いいわしと「There are plenty of fish in the sea」の文字" fetchpriority="high">
           <img class="hero-felt hero-print" src="assets/felt-patch.png" width="445" height="143" alt="">
         </div>
-        <img class="hero-fish hero-print" src="assets/fish-print.png" width="445" height="143" alt="">
+        <div class="hero-fish hero-print" aria-hidden="true">
+          <span class="fish-name">イワシ</span>
+          <img src="assets/fish-print.png" width="445" height="143" alt="">
+        </div>
         <nav class="hero-actions" aria-label="ポーカーのご案内">
           <a class="button" href="#first-visit">初めての方へ <span aria-hidden="true">→</span></a>
           <a class="button" href="#schedule">大会スケジュール <span aria-hidden="true">→</span></a>
