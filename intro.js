@@ -21,7 +21,7 @@ if (video && !motion.matches) {
 
   video.addEventListener("ended", () => updateTextColor(video.currentTime), { once: true });
   video.muted = true;
-  video.src = "assets/iwashi-fv.mp4";
+  video.src = "assets/iwashi-fv.mp4?v=hd";
   video.play().catch(() => {
     video.removeAttribute("src");
     video.load();
