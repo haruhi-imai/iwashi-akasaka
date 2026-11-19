@@ -1,0 +1,134 @@
+.games-area {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas: "intro photos" "fees photos";
+  background: #fff;
+}
+
+.games-intro,
+.games-fees {
+  padding-left: max(var(--gutter), calc((100vw - var(--shell)) / 2));
+  padding-right: clamp(32px, 5.55vw, 80px);
+}
+
+.games-intro {
+  grid-area: intro;
+  align-self: end;
+  padding-top: clamp(72px, 8.333vw, 120px);
+}
+
+.games-lead {
+  margin: 40px 0 24px;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.game-photos {
+  grid-area: photos;
+  display: grid;
+  grid-template-rows: 1.15fr 1fr;
+}
+
+.game-photo {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(280px, 26vw, 400px);
+  color: #fff;
+  background: #152734;
+  text-decoration: none;
+}
+
+.game-photo > img,
+.game-photo::after {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.game-photo > img {
+  z-index: -2;
+  object-fit: cover;
+  transition: transform .5s ease-out;
+}
+
+.game-photo::after {
+  content: "";
+  z-index: -1;
+  background: linear-gradient(0deg, rgb(9 17 31 / 88%), rgb(9 17 31 / 52%) 30%, transparent 70%);
+}
+
+.game-photo-text { padding: 32px; }
+.game-photo h3 { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.2; }
+.game-photo p { font-size: 14px; line-height: 1.5; margin-top: 12px; }
+
+.game-photo-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.game-photo-action span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font: 16px/1 Arial, sans-serif;
+  background: rgb(255 255 255 / 22%);
+  backdrop-filter: blur(10px);
+}
+
+.game-photo:focus-visible { outline-offset: -5px; }
+
+.games-fees {
+  grid-area: fees;
+  align-self: start;
+  padding-top: 56px;
+  padding-bottom: clamp(72px, 8.333vw, 120px);
+}
+
+.games-fees h3 { font-size: 21px; line-height: 1.5; }
+.games-fees-note, .games-breakdown { font-size: 13px; line-height: 1.75; color: #4e505e; }
+.games-fees-note { margin: 10px 0 14px; }
+
+.games-prices > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 6px 12px;
+  padding: 14px 0;
+  border-top: 1px solid #d9dae4;
+}
+
+.games-prices > div:last-child { border-bottom: 1px solid #d9dae4; }
+.games-prices dt { font-size: 15px; font-weight: 700; }
+.games-prices strong { color: var(--accent); font: 700 24px/1.1 Arial, sans-serif; font-variant-numeric: tabular-nums; }
+.games-prices small { font-size: 13px; }
+.games-breakdown { grid-column: 1 / -1; }
+.games-breakdown a { color: var(--accent); font-weight: 600; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .game-photo:hover > img { transform: scale(1.035); }
+}
+
+@media (max-width: 767px) {
+  .games-area {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "intro" "photos" "fees";
+  }
+
+  .games-intro, .games-fees { padding-inline: 24px; }
+  .games-intro { padding-top: 72px; padding-bottom: 48px; }
+  .games-lead { margin: 32px 0 24px; }
+  .game-photos { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; }
+  .game-photo { width: 100%; min-width: 0; min-height: 252px; aspect-ratio: 1.5; }
+  .game-photo-text { padding: 24px; }
+  .games-fees { padding-block: 48px 72px; }
+}

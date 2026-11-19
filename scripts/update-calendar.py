@@ -2,6 +2,7 @@
 import json
 import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
@@ -37,6 +38,22 @@ def tournament(item):
     }
 
 
+def event_poster(event_id):
+    # The calendar feed omits the artwork the shop supplies on its event pages.
+    try:
+        page = subprocess.check_output([
+            "curl", "-fsSL", "--max-time", "8",
+            f"https://pokerfans.jp/events/{event_id}?_lang=ja",
+        ], stderr=subprocess.DEVNULL, text=True)
+    except subprocess.CalledProcessError:
+        return None
+    match = re.search(
+        r'<meta\s+property="og:image"\s+content="(https://static\.sunvy\.jp/images/event/[^"<>]+)"',
+        page, re.I,
+    )
+    return match[1] if match else None
+
+
 def main():
     now = datetime.now(JST)
     query = urlencode({
@@ -51,6 +68,11 @@ def main():
     if not isinstance(items, list):
         raise ValueError("Unexpected PokerFans response")
     events = [event for item in items if (event := tournament(item))]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        posters = pool.map(event_poster, (event["id"] for event in events))
+        for event, poster in zip(events, posters):
+            if poster:
+                event["poster"] = poster
     data = {"checkedAt": now.isoformat(timespec="minutes"),
             "events": sorted(events, key=lambda event: event["start"])}
     OUTPUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")

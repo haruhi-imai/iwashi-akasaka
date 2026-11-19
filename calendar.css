@@ -1,0 +1,109 @@
+.tournaments {
+  --rail-inset: max(var(--gutter), (100% - var(--shell)) / 2);
+  padding-block: 120px;
+  overflow: clip;
+  background: #f9f9f9;
+}
+.tournaments-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.tournaments-head .english-title { text-transform: uppercase; }
+#calendar-status:empty, #calendar-updated:empty { display: none; }
+#calendar-status { margin-top: 32px; font-size: 14px; }
+.calendar-rail {
+  display: flex;
+  gap: 40px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--rail-inset);
+  padding: 8px var(--rail-inset) 16px;
+  margin-top: 56px;
+  scrollbar-width: none;
+}
+.calendar-rail::-webkit-scrollbar { display: none; }
+.calendar-rail:focus-visible { outline-offset: -4px; }
+.event-card {
+  flex: 0 0 min(360px, 38vw);
+  scroll-snap-align: start;
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+.event-card:first-child { flex-basis: min(480px, 47vw); }
+.event-cover {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  aspect-ratio: 1.76;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fcf9eb;
+  background: linear-gradient(110deg, #162653, #26388c 54%, #7e86c6);
+  box-shadow: 0 9px 30px -14px #151f4b77;
+  transition: box-shadow .24s ease;
+}
+.event-card:nth-child(3n+2) .event-cover { background: linear-gradient(118deg, #393373, #526ce1 55%, #a7b8ee); }
+.event-card:nth-child(3n) .event-cover { background: linear-gradient(115deg, #151e50, #4a55a4 62%, #c5c9eb); }
+.event-cover::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: -10%;
+  width: 65%;
+  aspect-ratio: 1;
+  bottom: -66%;
+  border-radius: 50%;
+  border: 12px double #dce8ff88;
+  box-shadow: 0 0 0 14px #a3c3ff33, 0 0 0 34px #a3c3ff22;
+}
+.cover-name {
+  padding: 12% 8% 8%;
+  font: 700 clamp(22px, 2.7vw, 42px)/1.02 Georgia, serif;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.cover-mark {
+  position: absolute;
+  top: 7%;
+  right: 6%;
+  width: 12%;
+  height: auto;
+}
+.event-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
+.event-card:hover .event-cover { box-shadow: 0 12px 34px -10px #192e6555; }
+.event-card:hover .calendar-event-name { text-decoration: underline; text-decoration-thickness: 1px; }
+.calendar-date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 20px; font-weight: 600; font-size: 14px; color: #50525e; }
+.event-period { color: var(--accent); font-size: 12px; font-weight: 750; }
+.calendar-event-name { margin: 10px 0; font-size: 20px; line-height: 1.45; overflow-wrap: anywhere; }
+.event-metrics { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; line-height: 1.6; }
+.event-metrics > span { display: inline-flex; gap: 6px; align-items: baseline; }
+.metric-label { color: #585b69; }
+.calendar-controls { display: flex; justify-content: center; gap: 32px; margin: 48px auto 0; }
+.calendar-controls[hidden], .calendar-rail[hidden] { display: none; }
+.calendar-controls button {
+  display: grid; place-items: center;
+  width: 64px; height: 64px; padding: 0;
+  border: 0; border-radius: 50%; background: var(--accent); color: #fff;
+  font: 400 26px/1 Arial, sans-serif;
+}
+.calendar-controls button:disabled { color: #767985; background: #e4e5e8; cursor: default; }
+#calendar-updated { margin-top: 30px; color: #5b5e66; font-size: 12px; }
+@media(max-width: 767px) {
+  .tournaments { --rail-inset: 32px; padding-block: 72px; }
+  .tournaments-head, #calendar-updated, #calendar-status { width: calc(100% - 64px); }
+  .tournaments-head { display: block; }
+  .tournaments-head .english-title { font-size: clamp(27px, 9.1vw, 40px); }
+  .calendar-link { margin-top: 16px; }
+  .calendar-link .circle-arrow { width: 32px; height: 32px; }
+  .calendar-rail { margin-top: 32px; gap: 40px; }
+  .event-card, .event-card:first-child { flex-basis: min(240px, calc(100vw - 74px)); }
+  .calendar-date { margin-top: 16px; font-size: 12px; gap: 6px; }
+  .calendar-event-name { font-size: 17px; margin: 6px 0; }
+  .event-metrics { font-size: 12px; gap: 3px 8px; }
+  .calendar-controls { gap: 16px; margin-top: 20px; }
+  .calendar-controls button { width: 48px; height: 48px; }
+}
+@media(prefers-reduced-motion: reduce) {
+  .event-cover { transition: none; }
+}

@@ -1,40 +1,45 @@
 {
-  "checkedAt": "2026-11-19T16:48+09:00",
+  "checkedAt": "2026-11-19T18:40+09:00",
   "events": [
     {
       "id": 2523186,
       "name": "Even Millons 1,000K",
       "start": "2026-11-18T17:30+09:00",
       "fee": 33000,
-      "cutoff": "2026-11-18T22:00+09:00"
+      "cutoff": "2026-11-18T22:00+09:00",
+      "poster": "https://static.sunvy.jp/images/event/2444044_gtRDbzFExEvEfAMu.jpg"
     },
     {
       "id": 2523187,
       "name": "Mega Stack 600K",
       "start": "2026-11-18T21:30+09:00",
       "fee": 24000,
-      "cutoff": "2026-11-19T02:00+09:00"
+      "cutoff": "2026-11-19T02:00+09:00",
+      "poster": "https://static.sunvy.jp/images/event/2257850_xOEQKbeMhrvrOWNM.jpg"
     },
     {
       "id": 2524820,
       "name": "MONSTER STACK 500K",
       "start": "2026-11-19T17:30+09:00",
       "fee": 22000,
-      "cutoff": "2026-11-19T22:00+09:00"
+      "cutoff": "2026-11-19T22:00+09:00",
+      "poster": "https://static.sunvy.jp/images/event/2257849_pKKBKqFlxDyBqDVs.jpg"
     },
     {
       "id": 2524819,
       "name": "Mega Stack 600K",
       "start": "2026-11-19T21:30+09:00",
       "fee": 24000,
-      "cutoff": "2026-11-20T02:00+09:00"
+      "cutoff": "2026-11-20T02:00+09:00",
+      "poster": "https://static.sunvy.jp/images/event/2257850_xOEQKbeMhrvrOWNM.jpg"
     },
     {
       "id": 2487637,
       "name": "iwashi platinum 3,000K",
       "start": "2026-12-01T15:30+09:00",
       "fee": 70000,
-      "cutoff": "2026-12-01T20:00+09:00"
+      "cutoff": "2026-12-01T20:00+09:00",
+      "poster": "https://static.sunvy.jp/images/event/2444050_BtLnMhYHbvWxppSV.jpg"
     }
   ]
 }
