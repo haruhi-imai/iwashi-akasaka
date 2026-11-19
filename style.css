@@ -64,7 +64,7 @@ img { display: block; }
   font-size: 0;
 }
 /* Open up the unprinted strip between the fish and the English lettering. */
-.hero-art { overflow: hidden; }
+.hero-art { overflow: hidden; background-color: #566888; }
 .hero-photo { clip-path: inset(0 0 59.8%); }
 .hero-art::before, .hero-art::after {
   position: absolute;
@@ -79,7 +79,7 @@ img { display: block; }
   transform: scaleY(4);
 }
 .hero-art::after {
-  clip-path: inset(42.95% 0 0);
+  clip-path: inset(42.45% 0 0);
   transform: translateY(9%);
 }
 .intro-pending .hero-fish { visibility: hidden; }
