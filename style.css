@@ -1,4 +1,6 @@
 :root {
+  --header-height: 56px;
+  scroll-padding-top: var(--header-height);
   color-scheme: light;
   --navy: #172f4e;
   --ink: #172a42;
@@ -21,9 +23,9 @@ img { display: block; }
 .skip { position: fixed; z-index: 5; top: .5rem; left: .5rem; padding: .5rem 1rem; background: white; transform: translateY(-160%); }
 .skip:focus { transform: none; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.header { background: var(--navy); color: white; }
+.header { position: sticky; top: 0; z-index: 4; background: var(--navy); color: white; }
 .bar, .foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.bar { min-height: 72px; }
+.bar { min-height: 56px; }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
 .brand img { width: 54px; height: auto; }
 .brand small, .brand strong { display: block; }
@@ -33,22 +35,40 @@ img { display: block; }
 .header nav a { min-height: 44px; display: grid; align-items: center; font-size: .9rem; text-decoration: none; }
 .header nav a:hover, .button:hover { text-decoration: underline; }
 .hero {
+  --hero-scroll-space: clamp(72px, 14vh, 140px);
   position: relative; overflow: hidden; isolation: isolate;
   background: #162c4b;
-  height: max(345px, 45vw);
+  height: max(300px, calc(100vh - var(--header-height) + var(--hero-scroll-space)));
+  height: max(300px, calc(100dvh - var(--header-height) + var(--hero-scroll-space)));
   container-type: size;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/felt-texture.webp") center / cover;
+  pointer-events: none;
 }
 /* Both the print and its moving twin use this cropped photograph's coordinate space. */
 .hero-table {
   --trim: min(.65vw, 12px);
-  position: absolute; left: 50%; top: calc(0px - var(--trim)); transform: translateX(-50%);
-  width: max(100%, min(620px, 124vw)); aspect-ratio: 1672 / 941;
+  --table-width: max(100cqw, min(620px, 124vw));
+  --table-height: calc(var(--table-width) * 941 / 1672);
+  --extra-height: calc((100cqh - var(--table-height)) / 2);
+  --table-top: min(max(calc(0px - var(--trim)), var(--extra-height)), calc(100cqh - var(--table-height) * .65 - 84px));
+  --blend: clamp(0px, var(--extra-height), 48px);
+  position: absolute; left: 50%; top: var(--table-top); transform: translateX(-50%);
+  width: var(--table-width); height: var(--table-height);
   --print-left: calc(622 / 1672 * 100%);
   --print-top: calc(232 / 941 * 100%);
   --print-width: calc(445 / 1672 * 100%);
 }
 .hero-art, .hero-photo { width: 100%; height: 100%; }
-.hero-art { position: absolute; inset: 0; }
+.hero-art {
+  position: absolute;
+  inset: 0;
+  mask-image: linear-gradient(to bottom, transparent calc(var(--blend) * .4), #000 var(--blend), #000 calc(100% - var(--blend)), transparent calc(100% - var(--blend) * .4));
+}
 .hero-print { position: absolute; left: var(--print-left); top: var(--print-top); width: var(--print-width); height: auto; display: none; pointer-events: none; }
 .hero-fish { z-index: 1; display: block; aspect-ratio: 445 / 143; }
 .hero-fish img { width: 100%; height: 100%; visibility: hidden; }
@@ -84,7 +104,8 @@ img { display: block; }
 }
 .intro-pending .hero-fish { visibility: hidden; }
 .intro-pending .hero-art, .intro-pending .hero-actions { visibility: hidden; }
-.hero.is-intro .hero-art { animation: table-reveal 2s both; }
+.intro-pending .hero::before { visibility: hidden; }
+.hero.is-intro .hero-art, .hero.is-intro::before { animation: table-reveal 2s both; }
 .hero.is-intro .hero-fish { animation: fish-approach 2s both; }
 .hero.is-intro .hero-fish img, .hero.is-intro .hero-felt { display: block; animation: handoff 2s step-end both; }
 .hero.is-intro .hero-actions { animation: actions-reveal 2s both; }
@@ -93,8 +114,8 @@ img { display: block; }
   72%, 100% { opacity: 1; }
 }
 @keyframes fish-approach {
-  0% { opacity: 0; left: 50%; top: calc(50cqh + var(--trim)); transform: translate(-50%,-50%) scale(1.9); }
-  14% { opacity: 1; left: 50%; top: calc(50cqh + var(--trim)); transform: translate(-50%,-50%) scale(1.75); animation-timing-function: cubic-bezier(.25,.63,.23,1); }
+  0% { opacity: 0; left: 50%; top: calc(50cqh - var(--table-top)); transform: translate(-50%,-50%) scale(1.9); }
+  14% { opacity: 1; left: 50%; top: calc(50cqh - var(--table-top)); transform: translate(-50%,-50%) scale(1.75); animation-timing-function: cubic-bezier(.25,.63,.23,1); }
   77%, 100% { opacity: 1; left: var(--print-left); top: var(--print-top); transform: none; }
 }
 @keyframes handoff { 0% { visibility: visible; } 82%, 100% { visibility: hidden; } }
@@ -103,8 +124,8 @@ img { display: block; }
 .button { display: flex; align-items: center; justify-content: space-between; gap: .4em; min-height: clamp(46px,4.2vw,68px); padding: .55em clamp(.65rem,1.35vw,1.4rem); color: var(--navy); background: var(--ivory); border: 1px solid #e9dfcd; text-decoration: none; font-size: clamp(.875rem,1.15vw,1.125rem); font-weight: 750; line-height: 1.35; }
 .button span { font-size: 1.2em; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
-  .intro-pending .hero-art, .intro-pending .hero-actions { visibility: visible; }
-  .hero.is-intro .hero-art, .hero.is-intro .hero-actions { animation: none; }
+  .intro-pending .hero-art, .intro-pending .hero-actions, .intro-pending .hero::before { visibility: visible; }
+  .hero.is-intro .hero-art, .hero.is-intro .hero-actions, .hero.is-intro::before { animation: none; }
   .hero.is-intro .hero-fish { animation: none; }
   .intro-pending .hero-fish { visibility: visible; }
   .hero.is-intro .hero-fish img, .hero.is-intro .hero-felt { display: none; }
@@ -156,13 +177,13 @@ h3 { font-size: 1.27rem; line-height: 1.5; }
 .footer { background: var(--navy); color: white; }
 .foot { min-height: 68px; font-size: .87rem; }
 @media (max-width: 760px) {
+  :root { --header-height: 52px; }
   .wrap { width: calc(100% - 2.25rem); }
-  .bar { min-height: 58px; gap: .5rem; }
+  .bar { min-height: 52px; gap: .5rem; }
   .brand img { width: 38px; }
   .brand strong { font-size: 1rem; }
   .header nav { gap: .7rem; }
   .header nav a { font-size: .82rem; }
-  .hero { height: clamp(220px,64vw,445px); }
   .hero-actions { width: min(85vw, 29rem); }
   .section-heading { align-items: start; margin-bottom: 1.3rem; gap: .45rem; }
   .section-heading .text-link { font-size: .9rem; }

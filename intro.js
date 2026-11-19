@@ -1,6 +1,14 @@
 const root = document.documentElement;
 const hero = document.querySelector(".hero");
+const header = document.querySelector(".header");
 const preference = matchMedia("(prefers-reduced-motion: reduce)");
+
+function updateHeaderHeight() {
+  root.style.setProperty("--header-height", header.getBoundingClientRect().height + "px");
+}
+
+updateHeaderHeight();
+new ResizeObserver(updateHeaderHeight).observe(header);
 
 function finishIntro() {
   root.classList.remove("intro-pending");
