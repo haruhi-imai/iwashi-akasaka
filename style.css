@@ -1,8 +1,7 @@
 :root {
   color-scheme: light;
   --navy: #172451;
-  --blue: #233781;
-  --mint: #d8efab;
+  --ink-teal: #103e3d;
   --paper: #f7f6f0;
   --muted: #495471;
   --line: #ccd1d7;
@@ -20,39 +19,84 @@ img { max-width: 100%; display: block; }
 .wrap { width: min(calc(100% - 3rem), 1136px); margin-inline: auto; }
 .skip { position: fixed; z-index: 5; top: .5rem; left: .5rem; padding: .5rem 1rem; background: white; transform: translateY(-150%); }
 .skip:focus { transform: none; }
-.header { background: var(--navy); color: white; border-bottom: 1px solid #ffffff40; }
+.header { background: #fff; color: var(--ink-teal); border-bottom: 1px solid #dce8e4; }
 .bar, .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem 1.5rem; }
 .bar { min-height: 74px; }
 .brand { display: inline-flex; align-items: baseline; gap: .75rem; text-decoration: none; white-space: nowrap; font-size: .875rem; }
-.brand [lang], .card-center span { font: 900 1.5rem/1 Arial, sans-serif; letter-spacing: .02em; }
+.brand [lang] { font: 900 1.5rem/1 Arial, sans-serif; letter-spacing: .02em; }
 nav { display: flex; gap: clamp(.8rem, 3vw, 2rem); }
 nav a { display: block; padding-block: .5rem; font-size: .9rem; text-decoration: none; }
 nav a:hover { text-decoration: underline; }
-.hero { background: var(--blue); color: var(--paper); overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; min-height: 590px; padding-block: 4rem; gap: 2rem; }
+.hero {
+  --fv-edge: #062525;
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100svh - 74px);
+  display: grid;
+  background: var(--fv-edge);
+  color: white;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #041a1cd9, transparent 39%, transparent 69%, var(--fv-edge));
+}
+.hero.has-light-frame { color: var(--ink-teal); }
+.hero.has-light-frame::after {
+  background: linear-gradient(to bottom, transparent 77%, var(--fv-edge));
+}
+.hero-layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-block: clamp(1.75rem, 7vh, 4rem) 1.75rem;
+  text-align: center;
+}
 .kicker { font: 700 .875rem/1.5 Arial, sans-serif; letter-spacing: .18em; }
-.hero .kicker { color: var(--mint); }
 h1, h2 { line-height: 1.2; letter-spacing: -.035em; }
-h1 { font-size: clamp(3rem, 7vw, 6.5rem); margin-block: 1rem 1.25rem; font-weight: 900; }
+h1 { font-size: clamp(2.15rem, 5vw, 5rem); font-weight: 850; text-wrap: balance; }
 h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-block: .55rem 1.25rem; font-weight: 850; }
-.lead { font-size: clamp(1rem, 2vw, 1.25rem); }
-.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-.button { display: inline-flex; min-height: 48px; align-items: center; padding: .6rem 1.15rem; border: 1px solid transparent; border-radius: 4px; text-decoration: none; font-weight: 700; }
+.lead { margin-top: .5rem; font-size: clamp(.875rem, 2vw, 1.15rem); font-weight: 650; }
+.hero-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  width: min(100%, 30rem);
+}
+.button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: .6rem 1.15rem;
+  border: 1px solid var(--ink-teal);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink-teal);
+  text-decoration: none;
+  font-weight: 700;
+}
 .button:hover { text-decoration: underline; }
-.mint { background: var(--mint); color: var(--navy); }
-.outline { border-color: #ffffff80; }
-.blue { background: var(--navy); color: white; }
-
-.deck { position: relative; display: grid; place-items: center; width: min(100%, 380px); aspect-ratio: 1 / 1.15; justify-self: center; }
-.back-card, .face-card { grid-area: 1 / 1; width: 66%; aspect-ratio: 2 / 3; border-radius: 14px; box-shadow: 0 18px 32px #11193b55; }
-.back-card { transform: translateX(17%) rotate(19deg); border: 7px solid var(--mint); background: repeating-linear-gradient(135deg, #a3c073 0 2px, transparent 2px 12px), repeating-linear-gradient(45deg, #a3c073 0 2px, var(--mint) 2px 12px); }
-.face-card { transform: translateX(-12%) rotate(-12deg); background: var(--paper); color: var(--navy); display: grid; place-items: center; position: relative; border: 1px solid #d9d8cb; }
-.corner { position: absolute; top: .65em; left: .7em; font: 700 clamp(1rem, 3vw, 1.7rem)/.9 Georgia, serif; text-align: center; }
-.corner span { display: block; margin-top: .2em; }
-.corner.bottom { inset: auto .7em .65em auto; transform: rotate(180deg); }
-.card-center { width: 75%; display: grid; justify-items: center; gap: .35rem; }
-.card-center img { width: min(62%, 112px); height: auto; }
-.card-center span { font-size: clamp(.9rem, 2.5vw, 1.65rem); }
+.hero-actions .button { padding-inline: .3rem; font-size: clamp(.8125rem, 3vw, 1rem); }
+.games-band { background: #062525; color: #fff; }
+.games-band .game-list div { border-color: #ffffff45; }
+.games-band .game-list dd, .games-band figcaption { color: #d7e3df; }
 
 .games, .visit-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(1.5rem, 5vw, 5rem); padding-block: clamp(3rem, 8vw, 7rem); }
 .game-list div, .info div { border-top: 1px solid var(--line); padding-block: .85rem; }
@@ -70,8 +114,11 @@ figcaption { margin-top: .35rem; color: var(--muted); font-size: .8125rem; }
 @media (max-width: 720px) {
   .wrap { width: calc(100% - 2rem); }
   .bar { padding-block: .55rem; }
-  .hero-grid, .games, .visit-grid { grid-template-columns: 1fr; }
-  .hero-grid { min-height: auto; padding-block: 3rem 2rem; gap: 1.25rem; }
-  .deck { width: min(66%, 250px); }
+  .games, .visit-grid { grid-template-columns: 1fr; }
+  .hero { min-height: max(295px, calc(100svh - 190px)); }
+  .hero-layout { padding-block: 1.5rem 1.2rem; }
+  .games { padding-top: 1rem; }
+  .games .kicker { margin-bottom: .2rem; }
+  .games h2 { margin-top: 0; }
   .info div { grid-template-columns: 5rem 1fr; }
 }

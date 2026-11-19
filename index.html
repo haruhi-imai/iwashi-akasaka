@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="赤坂見附駅から徒歩1分。ポーカーハウス いわし赤坂の営業時間、アクセス、イベント情報をまとめた来店ガイド。">
-  <meta name="theme-color" content="#172451">
+  <meta name="theme-color" content="#ffffff">
   <title>いわし赤坂 | Poker House 来店ガイド</title>
   <link rel="icon" href="assets/mark.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="intro.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">本文へ移動</a>
@@ -23,50 +24,41 @@
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="title">
-      <div class="wrap hero-grid">
-        <div class="intro">
-          <p class="kicker" lang="en">POKER HOUSE / AKASAKA</p>
-          <h1 id="title">いわし赤坂</h1>
-          <p class="lead">赤坂見附駅から徒歩1分の<br>アミューズメントポーカールーム。</p>
-          <div class="actions">
-            <a class="button mint" href="https://x.com/iwashi_poker">最新イベントを見る</a>
-            <a class="button outline" href="#visit">アクセス</a>
-          </div>
+      <video id="fv-video" class="hero-video" poster="assets/iwashi-fv-poster.png" width="1600" height="900" muted playsinline preload="none" aria-hidden="true"></video>
+      <div class="hero-layout wrap">
+        <div class="hero-copy">
+          <h1 id="title"><span lang="en">Poker House</span> いわし赤坂</h1>
+          <p class="lead">赤坂見附｜リングゲーム・トーナメント</p>
         </div>
-        <div class="deck" aria-hidden="true">
-          <div class="back-card"></div>
-          <div class="face-card">
-            <span class="corner" lang="en">A<span>♠</span></span>
-            <div class="card-center">
-              <img src="assets/mark.png" alt="" width="112" height="112">
-              <span lang="en">IWASHI</span>
-            </div>
-            <span class="corner bottom" lang="en">A<span>♠</span></span>
-          </div>
+        <div class="hero-actions">
+          <a class="button" href="#games">初めての方へ</a>
+          <a class="button" href="https://x.com/iwashi_poker">大会スケジュール</a>
         </div>
       </div>
     </section>
-    <section class="wrap games" id="games" aria-labelledby="games-title">
-      <div class="game-copy">
-        <p class="kicker" lang="en">THE GAMES</p>
-        <h2 id="games-title">ポーカーを楽しむ</h2>
-        <dl class="game-list">
-          <div><dt>トーナメント</dt><dd>開催日、開始時刻、参加費は店舗の公式Xでご確認ください。</dd></div>
-          <div><dt>ポイントリング</dt><dd>当日の稼働状況や参加条件は店舗にお問い合わせください。</dd></div>
-        </dl>
-      </div>
-      <figure class="game-photo">
-        <img src="assets/poker-table.jpg" width="1240" height="840" loading="lazy" alt="緑のポーカーテーブルに積まれた赤と緑のチップ">
-        <figcaption>ポーカーのイメージ写真</figcaption>
-      </figure>
-    </section>
+    <div class="games-band">
+      <section class="wrap games" id="games" aria-labelledby="games-title">
+        <div class="game-copy">
+          <p class="kicker" lang="en">THE GAMES</p>
+          <h2 id="games-title">初めての方へ</h2>
+          <dl class="game-list">
+            <div><dt>トーナメント</dt><dd>開催日、開始時刻、参加費は店舗の公式Xでご確認ください。</dd></div>
+            <div><dt>ポイントリング</dt><dd>当日の稼働状況や参加条件は店舗にお問い合わせください。</dd></div>
+          </dl>
+        </div>
+        <figure class="game-photo">
+          <img src="assets/poker-table.jpg" width="1240" height="840" loading="lazy" alt="緑のポーカーテーブルに積まれた赤と緑のチップ">
+          <figcaption>ポーカーのイメージ写真</figcaption>
+        </figure>
+      </section>
+    </div>
     <section class="visit" id="visit" aria-labelledby="visit-title">
       <div class="wrap visit-grid">
         <div>
           <p class="kicker" lang="en">VISIT</p>
           <h2 id="visit-title">店舗情報</h2>
           <p class="visit-lead">赤坂見附駅から徒歩1分</p>
-          <a class="button blue" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%823-10-3%20%E9%BB%9B%E3%83%93%E3%83%AB">Google マップで開く</a>
+          <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E8%B5%A4%E5%9D%823-10-3%20%E9%BB%9B%E3%83%93%E3%83%AB">Google マップで開く</a>
         </div>
         <div>
           <dl class="info">
