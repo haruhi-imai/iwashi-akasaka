@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="いわし赤坂の本日・近日の大会を確認できます。参加費、開始時刻、初回受付の締切は大会ごとに掲載しています。">
+  <meta name="theme-color" content="#111b23">
+  <title>トーナメント｜Poker House いわし赤坂</title>
+  <link rel="icon" href="assets/mark.png">
+  <link rel="stylesheet" href="style.css?v=gradient-header">
+  <link rel="stylesheet" href="details.css?v=1">
+  <link rel="stylesheet" href="calendar.css?v=table">
+  <script src="schedule.js?v=table" defer></script>
+  <script src="site.js?v=detail-pages" defer></script>
+</head>
+<body class="detail-page">
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="masthead">
+    <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span></a>
+    <nav class="top-links" aria-label="ヘッダーナビゲーション">
+      <a href="access.html">店舗情報・アクセス</a>
+      <a href="games.html">ゲーム・料金</a>
+      <a href="beginner.html">初めての方へ</a>
+      <a href="faq.html">よくある質問</a>
+    </nav>
+    <a class="header-schedule" href="tournaments.html" aria-current="page" aria-label="大会スケジュール">
+      <span aria-hidden="true">♠</span><span class="schedule-full">大会スケジュール</span><span class="schedule-short">大会</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="メインメニュー" hidden>
+      <a class="menu-item" href="access.html"><span lang="en">POKER ROOM</span><small>店舗情報・アクセス</small></a>
+      <a class="menu-item" href="games.html"><span lang="en">GAMES</span><small>ゲーム・料金</small></a>
+      <a class="menu-item" href="beginner.html"><span lang="en">FIRST VISIT</span><small>初めての方へ</small></a>
+      <a class="menu-item" href="faq.html"><span lang="en">FAQ</span><small>よくある質問</small></a>
+      <a class="primary-link" href="tournaments.html" aria-current="page">大会スケジュール</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="detail-hero" aria-labelledby="page-title">
+      <img src="assets/poker-hero.webp" alt="" fetchpriority="high">
+      <div class="shell detail-heading">
+        <nav class="breadcrumbs" aria-label="現在の位置"><a href="./">ホーム</a><span aria-hidden="true">/</span><a href="games.html">ゲーム・料金</a><span aria-hidden="true">/</span><span aria-current="page">トーナメント</span></nav>
+        <p class="detail-english" lang="en">TOURNAMENTS</p>
+        <h1 id="page-title">トーナメント</h1>
+        <p class="detail-lead">いわし赤坂の本日・近日の大会を確認できます。参加費、開始時刻、初回受付の締切は大会ごとに掲載しています。</p>
+        <a class="detail-action" href="#schedule">開催日程を見る <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    <section class="tournaments" id="schedule" aria-labelledby="schedule-title">
+      <div class="shell tournaments-head">
+        <div>
+          <h2 id="schedule-title" class="detail-calendar-title">開催日程</h2>
+          <p class="jp-label">本日・近日の大会スケジュール</p>
+        </div>
+        <a class="round-link calendar-link" href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗カレンダー<span aria-hidden="true" class="circle-arrow">→</span></a>
+      </div>
+      <p id="calendar-status" class="shell" aria-live="polite"></p>
+      <div id="calendar" class="calendar-rail" role="region" aria-label="大会カード" tabindex="0">
+        <p>開催日・参加費・受付締切は<a href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗の大会カレンダー</a>で確認できます。</p>
+      </div>
+      <div class="calendar-controls" hidden>
+        <button type="button" aria-label="前の大会を表示" aria-controls="calendar" id="events-prev">←</button>
+        <button type="button" aria-label="次の大会を表示" aria-controls="calendar" id="events-next">→</button>
+      </div>
+      <p class="shell" id="calendar-updated"></p>
+    </section>
+
+    <section class="shell detail-block" aria-labelledby="tournament-join">
+      <h2 id="tournament-join">トーナメントの遊び方と参加方法</h2>
+      <p class="detail-copy">いわし赤坂ではノーリミット・テキサスホールデムの大会が開催されています。各プレイヤーが同じ回に参加し、時間とともにブラインドが上がる中で順位を競います。</p>
+      <ol class="detail-steps">
+        <li><h3>出たい大会を選ぶ</h3><p>大会カードからPokerFansを開き、当日の開始時刻、参加費、受付締切を確認します。</p></li>
+        <li><h3>大会ページで申し込む</h3><p>「参加予約」がある回は、案内に沿って申し込みます。再参加できる条件や締切も大会ごとに確認してください。</p></li>
+        <li><h3>時間に余裕を持って来店</h3><p>黛ビル3階で受付。参加費とは別にチャージ・ドリンク料金が案内される場合があります。</p></li>
+      </ol>
+      <p class="detail-source"><a href="https://pokerfans.jp/events/2524820?_lang=ja">店舗掲載の大会レギュレーション例 ↗</a></p>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell foot-main">
+      <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span>いわし赤坂</span></a>
+      <div><strong>Poker House いわし赤坂</strong><p>東京都港区赤坂3-10-3 黛ビル3F<br>赤坂見附駅から徒歩1分</p></div>
+      <a href="https://x.com/iwashi_poker" class="social-link" aria-label="いわし赤坂 公式X">𝕏</a>
+    </div>
+    <div class="foot-bottom"><nav aria-label="フッターナビゲーション"><a href="beginner.html">初めての方へ</a><a href="tournaments.html">大会スケジュール</a><a href="games.html">ゲーム・料金</a><a href="access.html">アクセス</a></nav><small>Poker House いわし赤坂</small></div>
+  </footer>
+</body>
+</html>

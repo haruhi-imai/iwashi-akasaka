@@ -27,6 +27,9 @@
   desktop.addEventListener("change", () => setMenu(false));
   window.addEventListener("hashchange", () => setMenu(false));
 
+  // Detail pages share the navigation and have no background video.
+  if (!hero) return;
+
   function updateHeader() {
     header.classList.toggle("over-hero", hero.getBoundingClientRect().bottom >= header.offsetHeight);
   }
