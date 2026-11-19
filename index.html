@@ -8,19 +8,25 @@
   <title>Poker House いわし赤坂｜赤坂見附のポーカールーム</title>
   <link rel="icon" href="assets/mark.png">
   <link rel="preload" as="image" href="assets/room-hero.webp">
-  <link rel="stylesheet" href="style.css?v=table">
+  <link rel="stylesheet" href="style.css?v=gradient-header">
   <link rel="stylesheet" href="calendar.css?v=table">
   <link rel="stylesheet" href="games.css?v=table">
-  <script src="site.js?v=loop" defer></script>
+  <script src="site.js?v=gradient-header" defer></script>
   <script src="schedule.js?v=table" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">本文へ移動</a>
   <header class="masthead">
-    <a href="#main" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span>いわし赤坂</span></a>
+    <a href="#main" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span></a>
     <nav class="top-links" aria-label="ヘッダーナビゲーション">
-      <a href="#visit">店舗情報</a><a href="#games">ゲーム・料金</a><a href="#first-visit">初めての方へ</a><a href="#guide">よくある質問</a><a class="primary-link" href="#schedule">大会スケジュール</a>
+      <a href="#visit">店舗情報・アクセス</a>
+      <a href="#games">ゲーム・料金</a>
+      <a href="#first-visit">初めての方へ</a>
+      <a href="#guide">よくある質問</a>
     </nav>
+    <a class="header-schedule" href="#schedule" aria-label="大会スケジュール">
+      <span aria-hidden="true">♠</span><span class="schedule-full">大会スケジュール</span><span class="schedule-short">大会</span>
+    </a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く"><span></span><span></span><span></span></button>
     <nav id="mobile-menu" class="mobile-menu" aria-label="メインメニュー" hidden>
       <a class="menu-item" href="#visit"><span lang="en">POKER ROOM</span><small>店舗情報・アクセス</small></a>
@@ -45,20 +51,6 @@
         <a class="scroll-hint" href="#first-visit" aria-label="スクロールして初めての方の案内へ"><span lang="en">SCROLL</span><i aria-hidden="true"></i></a>
         <div class="film-utility"><button class="film-control" type="button" aria-label="映像を一時停止" hidden><span aria-hidden="true">Ⅱ</span></button><small>プレーイメージ</small></div>
       </div>
-      <aside class="hero-rail" aria-label="来店ガイド">
-        <nav class="rail-links" aria-label="ファーストビューのメニュー">
-          <a class="menu-item" href="#visit"><span lang="en">POKER ROOM</span><small>店舗情報・アクセス</small></a>
-          <a class="menu-item" href="#games"><span lang="en">GAMES</span><small>ゲーム・料金</small></a>
-          <a class="menu-item" href="#first-visit"><span lang="en">FIRST VISIT</span><small>初めての方へ</small></a>
-          <a class="menu-item" href="#guide"><span lang="en">FAQ</span><small>よくある質問</small></a>
-        </nav>
-        <div class="rail-actions">
-          <a class="event-banner" href="#schedule" aria-label="本日・近日の大会スケジュールを見る">
-            <span class="banner-diamond" aria-hidden="true">♠</span><span><strong lang="en">TOURNAMENTS</strong><small>大会スケジュール</small></span><b aria-hidden="true">›</b>
-          </a>
-          <a class="primary-link" href="#first-visit">初めての方へ</a>
-        </div>
-      </aside>
     </section>
 
     <section class="first-visit" id="first-visit" aria-labelledby="first-title">

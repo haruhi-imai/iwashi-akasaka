@@ -26,9 +26,14 @@
   });
   desktop.addEventListener("change", () => setMenu(false));
   window.addEventListener("hashchange", () => setMenu(false));
-  new IntersectionObserver(([entry]) => {
-    header.classList.toggle("is-visible", !entry.isIntersecting);
-  }).observe(hero);
+
+  function updateHeader() {
+    header.classList.toggle("over-hero", hero.getBoundingClientRect().bottom >= header.offsetHeight);
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("resize", updateHeader);
+  updateHeader();
 
   const video = document.querySelector(".hero-film");
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
