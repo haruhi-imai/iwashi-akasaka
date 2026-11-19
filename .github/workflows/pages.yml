@@ -28,7 +28,7 @@ jobs:
           node --check schedule.js
           mkdir -p dist/assets
           cp index.html style.css intro.js schedule.js schedule.json .nojekyll dist/
-          cp assets/{blue-poker-table.webp,fish-print.png,felt-patch.png,mark.png} dist/assets/
+          cp assets/{blue-poker-table.webp,fish-print.png,iwashi-handwriting.png,felt-patch.png,mark.png} dist/assets/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

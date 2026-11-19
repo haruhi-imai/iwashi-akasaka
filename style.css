@@ -54,14 +54,33 @@ img { display: block; }
 .hero-fish img { width: 100%; height: 100%; visibility: hidden; }
 .fish-name {
   position: absolute;
-  bottom: calc(100% + clamp(6px, .7vw, 12px));
-  width: 100%;
-  color: #fffaf0;
-  font: 700 clamp(17px, 1.8vw, 30px)/1.15 "Hiragino Sans", "Yu Gothic", sans-serif;
-  letter-spacing: .12em;
-  text-indent: .12em;
-  text-align: center;
-  text-shadow: 0 1px 4px #172d4e;
+  top: 113%;
+  left: 50%;
+  width: 61%;
+  aspect-ratio: 370 / 97;
+  transform: translateX(-50%);
+  background: #fffaf0;
+  mask: url("assets/iwashi-handwriting.png") center / contain no-repeat;
+  font-size: 0;
+}
+/* Open up the unprinted strip between the fish and the English lettering. */
+.hero-art { overflow: hidden; }
+.hero-photo { clip-path: inset(0 0 59.8%); }
+.hero-art::before, .hero-art::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: url("assets/blue-poker-table.webp") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.hero-art::before {
+  clip-path: inset(40% 0 57%);
+  transform-origin: center 40%;
+  transform: scaleY(4);
+}
+.hero-art::after {
+  clip-path: inset(42.95% 0 0);
+  transform: translateY(9%);
 }
 .intro-pending .hero-fish { visibility: hidden; }
 .intro-pending .hero-art, .intro-pending .hero-actions { visibility: hidden; }
@@ -80,7 +99,7 @@ img { display: block; }
 }
 @keyframes handoff { 0% { visibility: visible; } 82%, 100% { visibility: hidden; } }
 @keyframes actions-reveal { 0%, 82% { opacity: 0; } 100% { opacity: 1; } }
-.hero-actions { position: absolute; z-index: 2; top: 56%; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(.5rem,1.3vw,1.4rem); width: min(88vw, 37%); }
+.hero-actions { position: absolute; z-index: 2; top: 65%; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(.5rem,1.3vw,1.4rem); width: min(88vw, 37%); }
 .button { display: flex; align-items: center; justify-content: space-between; gap: .4em; min-height: clamp(46px,4.2vw,68px); padding: .55em clamp(.65rem,1.35vw,1.4rem); color: var(--navy); background: var(--ivory); border: 1px solid #e9dfcd; text-decoration: none; font-size: clamp(.875rem,1.15vw,1.125rem); font-weight: 750; line-height: 1.35; }
 .button span { font-size: 1.2em; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
