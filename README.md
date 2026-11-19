@@ -9,7 +9,7 @@ python3 -m http.server 8011 --bind 127.0.0.1
 ## トップページを編集する
 
 - 文章、ロゴ、メニューと各リンクは `index.html` で変更します。画面上部のメニュー、スマホメニュー、FV右欄のナビゲーションがあります。
-- FVの動画は `assets/room-film.mp4`、最初の静止画は `assets/room-hero.webp` です。提供動画 `gemini_generated_video_2180f445.mp4` の1280×720の映像トラックを無劣化で収録し、先頭フレームからポスターを作成しました。映像は無音で一度再生します。再生操作とヘッダーの切り替えは `site.js` にあります。
+- FVの動画は `assets/room-film.mp4`、最初の静止画は `assets/room-hero.webp` です。提供動画 `gemini_generated_video_2180f445.mp4` の1280×720の映像トラックを無劣化で収録し、先頭フレームからポスターを作成しました。映像は無音でループ再生します。再生操作とヘッダーの切り替えは `site.js` にあります。
 - ロゴ・色・レイアウトは `style.css`、大会一覧は `calendar.css`、ゲームと料金は `games.css` で調整します。新しい配信ファイルを追加したときは `.github/workflows/pages.yml` のコピー対象にも加えます。
 
 ## 大会日程

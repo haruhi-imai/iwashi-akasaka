@@ -36,9 +36,9 @@
   const icon = control.querySelector("span");
 
   function updateControl() {
-    const playing = !video.paused && !video.ended;
-    control.setAttribute("aria-label", playing ? "映像を一時停止" : video.ended ? "映像をもう一度再生" : "映像を再生");
-    icon.textContent = playing ? "Ⅱ" : video.ended ? "↻" : "▶";
+    const playing = !video.paused;
+    control.setAttribute("aria-label", playing ? "映像を一時停止" : "映像を再生");
+    icon.textContent = playing ? "Ⅱ" : "▶";
   }
 
   function setFilm() {
@@ -50,12 +50,11 @@
     }
     if (!video.hasAttribute("src")) video.src = video.dataset.src;
     control.hidden = false;
-    if (!video.ended) video.play().catch(updateControl);
+    video.play().catch(updateControl);
   }
 
   control.addEventListener("click", () => {
-    if (video.paused || video.ended) {
-      if (video.ended) video.currentTime = 0;
+    if (video.paused) {
       video.play().catch(updateControl);
     } else {
       video.pause();
@@ -66,7 +65,6 @@
     updateControl();
   });
   video.addEventListener("pause", updateControl);
-  video.addEventListener("ended", updateControl);
   video.addEventListener("error", () => {
     video.classList.remove("is-playing");
     control.hidden = true;
