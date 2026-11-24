@@ -8,8 +8,8 @@
   <title>Poker House いわし赤坂｜赤坂見附のポーカールーム</title>
   <link rel="icon" href="assets/mark.png">
   <link rel="preload" as="image" href="assets/room-hero.webp">
-  <link rel="stylesheet" href="style.css?v=gradient-header">
-  <link rel="stylesheet" href="calendar.css?v=table">
+  <link rel="stylesheet" href="style.css?v=first-visit-background">
+  <link rel="stylesheet" href="calendar.css?v=heading-font">
   <link rel="stylesheet" href="games.css?v=table">
   <script src="site.js?v=detail-pages" defer></script>
   <script src="schedule.js?v=table" defer></script>
@@ -56,16 +56,13 @@
     </section>
 
     <section class="first-visit" id="first-visit" aria-labelledby="first-title">
-      <div class="shell first-layout">
+      <img class="first-visit-background" src="assets/first-visit-room.webp" width="1600" height="894" alt="">
+      <div class="shell">
         <div class="first-copy">
-          <h2 id="first-title">いわし赤坂で、<br>初めてのポーカーを。</h2>
+          <h2 class="english-title" id="first-title" lang="en">FIRST VISIT</h2>
+          <p class="first-tagline">いわし赤坂で、初めてのポーカーを。</p>
           <p>ハンドを選んで、チップを置く。赤坂見附駅から徒歩1分のいわし赤坂では、リングゲームとトーナメントを楽しめます。<br>初めての方は、遊び方と料金、当日の受付の流れからご覧ください。</p>
-        </div>
-        <div class="first-visit-photo">
-          <a href="beginner.html" class="guide-card">
-            <img src="assets/poker-hero.webp" width="1440" height="810" alt="卓に並ぶカードとチップ">
-            <span class="card-caption"><strong>来店・参加の流れを見る</strong><span class="circle-arrow" aria-hidden="true">→</span></span>
-          </a>
+          <a href="beginner.html" class="round-link">来店・参加の流れを見る<span class="circle-arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -97,7 +94,7 @@
 
       <div class="game-photos">
         <a class="game-photo" href="ring-game.html">
-          <img src="assets/poker-table.jpg" loading="lazy" alt="" width="1240" height="840">
+          <img src="assets/ring-game-joining.webp?v=room" loading="lazy" alt="" width="1800" height="1005">
           <div class="game-photo-text">
             <h3>リングゲーム</h3>
             <p>空席があれば途中から参加でき、好きなタイミングで終了できます。</p>
@@ -131,23 +128,6 @@
         </dl>
       </section>
     </section>
-    <section class="room-section" id="visit" aria-labelledby="room-title">
-      <div class="shell room-heading"><h2 class="english-title" lang="en" id="room-title">POKER ROOM</h2><p class="jp-label">店舗情報・アクセス</p></div>
-      <div class="room-layout">
-        <div class="room-visual"><img src="assets/blue-poker-table.webp" width="1672" height="941" loading="lazy" alt="白いいわしと英文が印刷された青いポーカーテーブル"></div>
-        <div class="room-info">
-          <h3>Poker House いわし赤坂</h3><p>赤坂見附駅から徒歩1分</p>
-          <dl>
-            <div><dt>住所</dt><dd>東京都港区赤坂3-10-3 黛ビル3F</dd></div>
-            <div><dt>営業時間</dt><dd>平日 17:00〜翌5:00<br>土日 13:00〜翌5:00</dd></div>
-            <div><dt>お問い合わせ</dt><dd><a href="tel:+81355455654">03-5545-5654</a><br><a href="mailto:iwashi.poker@gmail.com">iwashi.poker@gmail.com</a></dd></div>
-          </dl>
-          <div class="room-actions"><a class="round-link" href="https://www.google.com/maps/search/?api=1&amp;query=東京都港区赤坂3-10-3+黛ビル">地図を開く<span class="circle-arrow" aria-hidden="true">↗</span></a><a href="https://x.com/iwashi_poker">店舗公式X ↗</a></div>
-          <details class="room-map"><summary>周辺地図を表示</summary><iframe loading="lazy" title="赤坂見附駅近く、黛ビルの地図" src="https://maps.google.com/maps?q=東京都港区赤坂3-10-3黛ビル&amp;z=17&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></details>
-        </div>
-      </div>
-    </section>
-
     <section class="visitor-guide" id="guide" aria-labelledby="guide-title">
       <div class="shell guide-layout">
         <div><h2 id="guide-title" class="english-title" lang="en">FAQ</h2><p class="jp-label">初めての方の来店・参加ガイド</p></div>
@@ -156,6 +136,24 @@
           <details><summary>予約はできますか？</summary><p>大会は各回の公式ページにある「参加予約」から申し込めます。リングゲームの当日の空席は、来店前に<a href="tel:+81355455654">店舗へお電話ください</a>。</p></details>
           <details><summary>初回はいくらかかりますか？</summary><p>リングゲームは50点の購入、チャージ、ドリンクで6,200円からの掲載例があります。大会の参加費は各回で変わります。<a href="ring-game.html#fees">料金の内訳</a>と<a href="tournaments.html">参加予定の大会</a>をご確認ください。</p></details>
           <details><summary>ルールを教わることはできますか？</summary><p>初心者講習の実施日や所要時間は、来店希望日を添えて<a href="mailto:iwashi.poker@gmail.com">店舗へお問い合わせください</a>。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="room-section" id="visit" aria-labelledby="room-title">
+      <div class="shell room-heading"><h2 class="english-title" lang="en" id="room-title">POKER ROOM</h2><p class="jp-label">店舗情報・アクセス</p></div>
+      <div class="room-layout">
+        <div class="room-map-panel">
+          <iframe loading="lazy" title="Google マップで見る いわし赤坂の周辺地図" src="https://maps.google.com/maps?q=東京都港区赤坂3-10-3黛ビル&amp;z=17&amp;output=embed" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="room-info">
+          <h3>Poker House いわし赤坂</h3><p>赤坂見附駅から徒歩1分</p>
+          <dl>
+            <div><dt>住所</dt><dd>東京都港区赤坂3-10-3 黛ビル3F</dd></div>
+            <div><dt>営業時間</dt><dd>平日 17:00〜翌5:00<br>土日 13:00〜翌5:00</dd></div>
+            <div><dt>お問い合わせ</dt><dd><a href="tel:+81355455654">03-5545-5654</a><br><a href="mailto:iwashi.poker@gmail.com">iwashi.poker@gmail.com</a></dd></div>
+          </dl>
+          <div class="room-actions"><a class="round-link" href="https://www.google.com/maps/search/?api=1&amp;query=東京都港区赤坂3-10-3+黛ビル">地図を開く<span class="circle-arrow" aria-hidden="true">↗</span></a><a href="https://x.com/iwashi_poker">店舗公式X ↗</a></div>
         </div>
       </div>
     </section>

@@ -58,7 +58,7 @@
 }
 .cover-name {
   padding: 12% 8% 8%;
-  font: 700 clamp(22px, 2.7vw, 42px)/1.02 Georgia, serif;
+  font: 700 clamp(22px, 2.7vw, 42px)/1.1 var(--display);
   letter-spacing: -.04em;
   text-wrap: balance;
   overflow-wrap: anywhere;

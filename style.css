@@ -4,7 +4,7 @@
   --ink: #292b34;
   --shell: 1272px;
   --gutter: clamp(24px, 5.83vw, 84px);
-  --display: Copperplate, "Copperplate Gothic Bold", Georgia, serif;
+  --display: Copperplate, "Copperplate Gothic Bold", Georgia, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", "Noto Serif JP", serif;
   font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
   color: var(--ink);
   background: #fff;
@@ -13,6 +13,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 body, h1, h2, h3, h4, p, dl, dd, ol, ul, figure { margin: 0; }
 body { line-height: 1.75; }
+:where(h1, h2, h3, h4, h5, h6, .questions summary) { font-family: var(--display); }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-underline-offset: .23em; }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -100,36 +101,59 @@ body.menu-open .masthead::before { opacity: 0; }
 .film-utility small { font-size: 10px; color: white; text-shadow: 0 1px 3px #000; }
 .film-control { display: grid; place-items: center; padding: 0; width: 34px; height: 34px; border: 1px solid #ffffff82; border-radius: 50%; color: white; background: #13162057; font: 600 14px/1 Arial,sans-serif; }
 .film-control[hidden] { display: none; }
-.room-map { margin-top: 20px; font-size: 13px; color: var(--accent); }
-.room-map summary { cursor: pointer; font-weight: 600; }
-.room-map iframe { display: block; width: 100%; height: 240px; margin-top: 12px; border: 0; }
 .menu-item { display: grid; justify-items: start; gap: 8px; color: inherit; text-decoration: none; }
 .menu-item span { font: 750 clamp(16px,1.39vw,20px)/1 Arial, sans-serif; letter-spacing: -.025em; }
 .menu-item small { font-size: 12px; font-weight: 600; line-height: 1.2; }
 #main:focus { outline: none; }
 
 /* First visit */
-.first-visit { overflow: hidden; }
-.first-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,4.45vw,64px); min-height: 560px; align-items: center; }
-.first-copy { padding-block: 60px; }
-.first-copy h2 { color: var(--accent); font-weight: 700; font-size: clamp(30px,3.34vw,48px); line-height: 1.5; letter-spacing: .005em; }
-.first-copy p { margin-top: clamp(24px,3.33vw,48px); line-height: 2; }
-.photo-stack { position: relative; isolation: isolate; align-self: end; height: 440px; }
-.photo-stack::before, .photo-stack::after { content: ""; position: absolute; inset: -20px 40px auto; z-index: -2; height: 100px; border-radius: 32px 32px 0 0; background: center 65% / cover url("assets/blue-poker-table.webp"); box-shadow: 0 -5px 25px #17172212; }
-.photo-stack::after { inset: -10px 20px auto; z-index: -1; background-image: url("assets/poker-table.jpg"); }
-.guide-card { display: block; position: relative; overflow: hidden; height: calc(100% + 24px); border-radius: 32px 32px 0 0; color: #fff; box-shadow: 0 3px 35px #191f3321; }
-.guide-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
-.guide-card:hover img { transform: scale(1.035); }
-.card-caption { position: absolute; inset: auto 0 0; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 80px 24px 48px; background: linear-gradient(transparent,#101423bc); }
-.card-caption strong { font-size: clamp(19px,1.94vw,28px); line-height: 1.4; }
-.card-caption .circle-arrow { width: 64px; height: 64px; flex-shrink: 0; background: #ffffff36; backdrop-filter: blur(10px); }
+.first-visit {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  min-height: 560px;
+  padding-block: clamp(64px, 7vw, 104px);
+  background: #fff;
+}
+.first-visit-background {
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 0 auto;
+  width: 72%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
+}
+.first-visit::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #fff 30%, rgb(255 255 255 / 96%) 42%, rgb(255 255 255 / 82%) 51%, rgb(255 255 255 / 26%) 63%, transparent 74%);
+}
+.first-copy { max-width: min(32rem, 49%); }
+.first-copy p { margin-top: 20px; line-height: 1.9; }
+.first-copy .first-tagline { margin-top: 14px; color: var(--accent); font-size: clamp(17px, 1.55vw, 22px); font-weight: 700; line-height: 1.6; }
+.first-copy .round-link { margin-top: 26px; min-height: 44px; }
 
 /* Room, visit questions and footer */
 .room-section { border-top: 1px solid #ececf1; }
 .room-heading { padding-block: clamp(72px,8.33vw,120px) 40px; }
 .room-layout { display: grid; grid-template-columns: 1fr 1fr; }
-.room-visual { background: #536187; display: grid; align-items: center; overflow: hidden; }
-.room-visual img { width: 100%; height: auto; }
+.room-map-panel {
+  position: relative;
+  min-height: clamp(320px, 36vw, 500px);
+  background: #f3f4f6;
+}
+.room-map-panel iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .room-info { padding: clamp(32px,4.44vw,64px); background: #f6f6f9; }
 .room-info h3 { color: var(--accent); font-size: clamp(21px,2.2vw,32px); line-height: 1.4; }
 .room-info > p { margin-top: 8px; font-size: 14px; }
@@ -189,17 +213,11 @@ body.menu-open .masthead::before { opacity: 0; }
   .logo-ja { gap: 5px; }
   .logo-ja span { font-size: 21px; }
   .hero-wordmark { gap: 5px; }
-  .first-layout, .room-layout, .guide-layout { grid-template-columns: 1fr; }
-  .first-layout { padding-block: 80px 64px; gap: 32px; min-height: 0; }
-  .first-copy { padding: 0; }
-  .first-copy h2 { font-size: clamp(26px,8.2vw,32px); }
-  .first-copy p { margin-top: 32px; }
-  .photo-stack { height: auto; }
-  .photo-stack::before, .photo-stack::after { display: none; }
-  .guide-card { aspect-ratio: 1.6; height: auto; border-radius: 16px; }
-  .card-caption { padding: 48px 20px 24px; }
-  .card-caption strong { font-size: clamp(16px,4.7vw,20px); }
-  .card-caption .circle-arrow { width: 40px; height: 40px; }
+  .room-layout, .guide-layout { grid-template-columns: 1fr; }
+  .first-visit { --photo-height: clamp(254px, 55vw, 390px); min-height: 0; padding-block: 64px calc(var(--photo-height) - 26px); }
+  .first-visit-background, .first-visit::before { inset: auto 0 0; width: 100%; height: var(--photo-height); }
+  .first-visit::before { background: linear-gradient(#fff, rgb(255 255 255 / 80%) 12%, rgb(255 255 255 / 24%) 30%, transparent 49%); }
+  .first-copy { max-width: 32rem; }
   .room-info { padding: 32px 24px 40px; }
   .room-info dl div { grid-template-columns: 5.5em 1fr; }
   .guide-layout { gap: 32px; }
