@@ -118,7 +118,7 @@ body.menu-open .masthead::before { opacity: 0; }
 }
 .first-visit-background {
   position: absolute;
-  z-index: -2;
+  z-index: 0;
   inset: 0 0 0 auto;
   width: 72%;
   height: 100%;
@@ -128,12 +128,12 @@ body.menu-open .masthead::before { opacity: 0; }
 .first-visit::before {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   inset: 0;
   pointer-events: none;
   background: linear-gradient(90deg, #fff 30%, rgb(255 255 255 / 96%) 42%, rgb(255 255 255 / 82%) 51%, rgb(255 255 255 / 26%) 63%, transparent 74%);
 }
-.first-copy { max-width: min(32rem, 49%); }
+.first-copy { position: relative; z-index: 2; max-width: min(32rem, 49%); }
 .first-copy p { margin-top: 20px; line-height: 1.9; }
 .first-copy .first-tagline { margin-top: 14px; color: var(--accent); font-size: clamp(17px, 1.55vw, 22px); font-weight: 700; line-height: 1.6; }
 .first-copy .round-link { margin-top: 26px; min-height: 44px; }
