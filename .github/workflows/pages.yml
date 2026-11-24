@@ -28,7 +28,7 @@ jobs:
           node --check schedule.js
           mkdir -p dist/assets
           cp index.html games.html ring-game.html tournaments.html beginner.html access.html faq.html details.css style.css calendar.css games.css site.js schedule.js schedule.json .nojekyll dist/
-          cp assets/{room-hero.webp,room-film.mp4,blue-poker-table.webp,poker-hero.webp,poker-table.jpg,fish-print.png,iwashi-handwriting.png,mark.png} dist/assets/
+          cp assets/{room-hero.webp,room-film.mp4,blue-poker-table.webp,poker-hero.webp,poker-table.jpg,fish-print.png,iwashi-handwriting.png,mark.png,first-visit-room.webp,ring-game-joining.webp} dist/assets/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
