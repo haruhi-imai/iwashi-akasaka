@@ -118,6 +118,25 @@
 .detail-steps li { border-top: 1px solid var(--line); padding-top: 15px; counter-increment: visit-step; }
 .detail-steps li::before { content: counter(visit-step, decimal-leading-zero); color: var(--accent); font: 700 1.45rem/1 Georgia, serif; }
 .detail-steps h3 { font-size: 1.1rem; margin-block: 6px; }
+.visit-guide-title {
+  color: var(--accent);
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.25;
+}
+.visit-guide-list {
+  display: grid;
+  gap: clamp(12px, 1.5vw, 22px);
+  margin-top: clamp(20px, 2.5vw, 36px);
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+}
+.visit-guide-list > div {
+  display: grid;
+  grid-template-columns: 8em minmax(0, 1fr);
+  gap: 4px 16px;
+  align-items: baseline;
+}
+.visit-guide-list dt { font-weight: 700; }
+.visit-guide-list dt a:not(:hover) { text-decoration: none; }
 .beginner-rules {
   position: relative;
   isolation: isolate;
@@ -159,6 +178,7 @@
   padding-block: clamp(40px, 4.5vw, 72px);
 }
 .detail-page main .beginner-rules h2 { color: inherit; }
+#rules-title { -webkit-text-stroke: .3px currentColor; }
 .beginner-rules .detail-terms > div { border-color: #555; }
 .beginner-rules .lesson-screen { padding: clamp(20px, 2.4vw, 34px); }
 @media (max-width: 980px) {
@@ -182,6 +202,7 @@
 .detail-page .tournaments { padding-block: clamp(44px, 6vw, 80px); }
 .detail-page .room-heading { padding-block: clamp(44px, 6vw, 80px) 22px; }
 @media (max-width: 767px) {
+  .visit-guide-list > div { grid-template-columns: minmax(0, 1fr); }
   .detail-card, .detail-split, .detail-steps { grid-template-columns: minmax(0, 1fr); }
   .detail-card { row-gap: 14px; }
 }
