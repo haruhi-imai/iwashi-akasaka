@@ -2,7 +2,8 @@
   --rail-inset: max(var(--gutter), (100% - var(--shell)) / 2);
   padding-block: 120px;
   overflow: clip;
-  background: #f9f9f9;
+  background-color: var(--surface-alt);
+  color: var(--ink);
 }
 .tournaments-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .tournaments-head .english-title { text-transform: uppercase; }
@@ -73,30 +74,29 @@
 .event-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
 .event-card:hover .event-cover { box-shadow: 0 12px 34px -10px #192e6555; }
 .event-card:hover .calendar-event-name { text-decoration: underline; text-decoration-thickness: 1px; }
-.calendar-date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 20px; font-weight: 600; font-size: 14px; color: #50525e; }
+.calendar-date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 20px; font-weight: 600; font-size: 14px; color: var(--muted); }
 .event-period { color: var(--accent); font-size: 12px; font-weight: 750; }
-.event-period.is-archive { padding: 2px 8px; border-radius: 4px; background: #ececf4; }
+.event-period.is-archive { padding: 2px 8px; border-radius: 4px; background: var(--tint); }
 .calendar-event-name { margin: 10px 0; font-size: 20px; line-height: 1.45; overflow-wrap: anywhere; }
 .event-metrics { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; line-height: 1.6; }
 .event-metrics > span { display: inline-flex; gap: 6px; align-items: baseline; }
-.metric-label { color: #585b69; }
+.metric-label { color: var(--muted); }
 .calendar-controls { display: flex; justify-content: center; gap: 32px; margin: 48px auto 0; }
 .calendar-controls[hidden], .calendar-rail[hidden] { display: none; }
 .calendar-controls button {
   display: grid; place-items: center;
   width: 64px; height: 64px; padding: 0;
-  border: 0; border-radius: 50%; background: var(--accent); color: #fff;
-  font: 400 26px/1 Arial, sans-serif;
+  border: 0; background: transparent; color: var(--accent);
 }
-.calendar-controls button:disabled { color: #767985; background: #e4e5e8; cursor: default; }
-#calendar-updated { margin-top: 30px; color: #5b5e66; font-size: 12px; }
+.calendar-controls button:enabled:hover { color: var(--accent-hover); }
+.calendar-controls button:disabled { color: var(--disabled-ink); opacity: .55; cursor: default; }
+#calendar-updated { margin-top: 30px; color: var(--muted); font-size: 12px; }
 @media(max-width: 767px) {
   .tournaments { --rail-inset: 32px; padding-block: 72px; }
   .tournaments-head, #calendar-updated, #calendar-status { width: calc(100% - 64px); }
   .tournaments-head { display: block; }
   .tournaments-head .english-title { font-size: clamp(27px, 9.1vw, 40px); }
   .calendar-link { margin-top: 16px; }
-  .calendar-link .circle-arrow { width: 32px; height: 32px; }
   .calendar-rail { margin-top: 32px; gap: 40px; }
   .event-card, .event-card:first-child { flex-basis: min(240px, calc(100vw - 74px)); }
   .calendar-date { margin-top: 16px; font-size: 12px; gap: 6px; }

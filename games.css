@@ -5,7 +5,7 @@
   grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
   grid-template-areas: "intro photos" "fees photos";
   row-gap: 32px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .games-intro,
@@ -35,39 +35,36 @@
 }
 
 .game-photo {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "copy artwork";
+  align-items: center;
   overflow: hidden;
-  isolation: isolate;
   border-radius: clamp(14px, 1.5vw, 22px);
   box-shadow: 0 6px 18px rgb(15 24 40 / 14%);
   color: #fff;
-  background: #152734;
+  background: #0d0d0d;
   text-decoration: none;
 }
 
-.game-photo > img,
-.game-photo::after {
-  position: absolute;
-  inset: 0;
-  height: 100%;
+:root[data-theme="dark"] .game-photo {
+  background: radial-gradient(ellipse at center, #101010 15%, var(--surface) 75%);
+}
+
+.game-photo > .game-option-art {
+  grid-area: artwork;
   width: 100%;
+  height: auto;
+  mask-image:
+    linear-gradient(to right, transparent, #000 20%, #000 89%, transparent),
+    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-composite: intersect;
 }
 
-.game-photo > img {
-  z-index: -2;
-  object-fit: cover;
-  transition: transform .5s ease-out;
+.game-photo-text {
+  grid-area: copy;
+  padding: clamp(16px, 2vw, 28px);
 }
-
-.game-photo::after {
-  content: "";
-  z-index: -1;
-  background: linear-gradient(0deg, rgb(9 17 31 / 92%), rgb(9 17 31 / 60%) 45%, transparent 85%);
-}
-
-.game-photo-text { padding: clamp(16px, 2vw, 28px); }
 .game-photo h3 { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.2; }
 .game-photo p { font-size: 14px; line-height: 1.5; margin-top: 8px; }
 
@@ -80,18 +77,8 @@
   font-weight: 700;
 }
 
-.game-photo-action span {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font: 16px/1 Arial, sans-serif;
-  background: rgb(255 255 255 / 22%);
-  backdrop-filter: blur(10px);
-}
-
 .game-photo:focus-visible { outline-offset: -5px; }
+.game-photo:hover .game-photo-action { text-decoration: underline; }
 
 .games-fees {
   grid-area: fees;
@@ -100,7 +87,7 @@
 }
 
 .games-fees h3 { font-size: 21px; line-height: 1.5; }
-.games-fees-note, .games-breakdown { font-size: 13px; line-height: 1.75; color: #4e505e; }
+.games-fees-note, .games-breakdown { font-size: 13px; line-height: 1.75; color: var(--muted); }
 .games-fees-note { margin: 10px 0 14px; }
 
 .games-prices > div {
@@ -109,19 +96,15 @@
   align-items: baseline;
   gap: 6px 12px;
   padding: 14px 0;
-  border-top: 1px solid #d9dae4;
+  border-top: 1px solid var(--line);
 }
 
-.games-prices > div:last-child { border-bottom: 1px solid #d9dae4; }
+.games-prices > div:last-child { border-bottom: 1px solid var(--line); }
 .games-prices dt { font-size: 15px; font-weight: 700; }
 .games-prices strong { color: var(--accent); font: 700 24px/1.1 Arial, sans-serif; font-variant-numeric: tabular-nums; }
 .games-prices small { font-size: 13px; }
 .games-breakdown { grid-column: 1 / -1; }
 .games-breakdown a { color: var(--accent); font-weight: 600; }
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .game-photo:hover > img { transform: scale(1.035); }
-}
 
 @media (max-width: 767px) {
   .games-area {
@@ -132,8 +115,13 @@
 
   .games-intro, .games-fees { padding-inline: var(--gutter); }
   .game-photos {
-    grid-auto-rows: minmax(230px, auto);
+    grid-auto-rows: auto;
     margin-block: 0;
     margin-inline: var(--gutter);
+  }
+
+  .game-photo {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "artwork" "copy";
   }
 }

@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="来店前に知っておきたい予約、初回の料金、ルール説明についてご案内します。">
+  <meta name="description" content="ポーカーが初めての方向けに、遊び方の違い、予約、料金、当日の受付、店舗へのアクセスを12の質問でご案内します。">
   <meta name="theme-color" content="#111b23">
   <title>よくある質問｜Poker House いわし赤坂</title>
   <link rel="icon" href="assets/mark.png">
-  <link rel="stylesheet" href="style.css?v=faq-alignment">
-  <link rel="stylesheet" href="details.css?v=subpage-content">
+  <script src="theme.js?v=theme-switch"></script>
+  <link rel="stylesheet" href="style.css?v=ad40925ae7">
+  <link rel="stylesheet" href="details.css?v=44f9ed2cc3">
 
   <script src="site.js?v=faq-motion" defer></script>
 </head>
-<body class="detail-page">
+<body id="top" class="detail-page">
   <a class="skip" href="#main">本文へ移動</a>
   <header class="masthead">
     <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span></a>
@@ -22,16 +23,17 @@
       <a href="beginner.html">初めての方へ</a>
       <a href="faq.html" aria-current="page">よくある質問</a>
     </nav>
-    <a class="header-schedule" href="tournaments.html" aria-label="大会スケジュール">
+    <a class="header-schedule" href="games.html#schedule" aria-label="大会スケジュール">
       <span aria-hidden="true">♠</span><span class="schedule-full">大会スケジュール</span><span class="schedule-short">大会</span>
     </a>
+    <button class="theme-toggle" type="button" hidden><span class="theme-indicator" aria-hidden="true"></span></button>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く"><span></span><span></span><span></span></button>
     <nav id="mobile-menu" class="mobile-menu" aria-label="メインメニュー" hidden>
       <a class="menu-item" href="./"><span lang="en">TOP</span><small>トップページ</small></a>
       <a class="menu-item" href="games.html"><span lang="en">GAMES</span><small>ゲーム・料金</small></a>
       <a class="menu-item" href="beginner.html"><span lang="en">FIRST VISIT</span><small>初めての方へ</small></a>
       <a class="menu-item" href="faq.html" aria-current="page"><span lang="en">FAQ</span><small>よくある質問</small></a>
-      <a class="primary-link" href="tournaments.html">大会スケジュール</a>
+      <a class="primary-link" href="games.html#schedule">大会スケジュール</a>
     </nav>
   </header>
 
@@ -41,25 +43,98 @@
       <div class="shell guide-layout">
         <div>
           <h2 class="english-title" id="guide-title" lang="en">BEFORE YOU PLAY</h2>
-          <p class="jp-label">来店と参加について</p>
+          <img class="faq-guide-photo" src="assets/faq-poker-table.webp" width="900" height="1125" loading="lazy" alt="">
         </div>
         <div class="questions">
-          <details open><summary>初めてです。来店までの流れは？</summary><p>まず<a href="games.html">遊ぶゲームと料金</a>を確認します。大会なら、出たい回の詳細で開始時刻と受付締切を確認し、赤坂見附の黛ビル3階で受付してください。PokerFansで予約した方は、受付でポーカーIDとニックネームをお伝えください。</p></details>
-          <details><summary>予約はできますか？</summary><p>大会は各回の公式ページにある「参加予約」から申し込めます。リングゲームの当日の空席は、来店前に<a href="tel:+81355455654">店舗へお電話ください</a>。</p></details>
-          <details><summary>初回はいくらかかりますか？</summary><p>リングゲームは50点の購入、チャージ、ドリンクで6,200円からの掲載例があります。大会の参加費は各回で変わります。<a href="ring-game.html#fees">料金の内訳</a>と<a href="tournaments.html">参加予定の大会</a>をご確認ください。</p></details>
-          <details><summary>ルールを教わることはできますか？</summary><p>初心者講習の実施日や所要時間は、来店希望日を添えて<a href="mailto:iwashi.poker@gmail.com">店舗へお問い合わせください</a>。</p></details>
+          <details open>
+            <summary>初めてです。来店までの流れは？</summary>
+            <p>まず<a href="games.html">ゲームと料金</a>を見て、リングゲームとトーナメントのどちらに参加するか決めます。リングゲームなら当日の開催と空席を店舗に、大会なら参加費・開始時刻・受付締切をPokerFansで確認してください。当日は<a href="access.html#visit">赤坂の黛ビル3階</a>で受付します。初めて遊ぶ方は、受付でその旨をお伝えください。</p>
+          </details>
+          <details>
+            <summary>リングゲームとトーナメントはどう違いますか？</summary>
+            <p><a href="games.html#fees">リングゲーム</a>は、空席がある卓に途中から参加でき、自分のタイミングで終了できます。<a href="games.html#tournament-details">トーナメント</a>は、決まった時刻に始まり、参加者の順位を競う形式です。短時間だけ遊びたい方はリングゲームの空席を、大会に出たい方は開催日程を確認すると予定を立てやすくなります。</p>
+          </details>
+          <details>
+            <summary>予約はできますか？</summary>
+            <p>トーナメントは、PokerFansの各大会ページに「参加予約」がある回なら、その画面から申し込めます。受付締切や参加条件は回ごとに異なるので、予約前に確認してください。リングゲームについては、来店したい時間を添えて<a href="tel:+81355455654">店舗へ電話</a>し、当日の開催と空席を確認してください。</p>
+          </details>
+          <details>
+            <summary>初回はいくらかかりますか？</summary>
+            <p>リングゲームの<a href="games.html#fees">2026年11月19日掲載の料金例</a>では、0.5–1卓でチップ50点が5,000円、チャージが600円、ドリンクが600円からで、合計6,200円からです。別の卓ではチップの購入額が変わります。トーナメントは大会ごとに参加費が異なるので、<a href="games.html#schedule">参加予定の大会</a>でチャージやドリンクを含めた費用もご確認ください。</p>
+          </details>
+          <details>
+            <summary>ルールを教わることはできますか？</summary>
+            <p>説明を希望する方は、来店したい日時を添えて<a href="mailto:iwashi.poker@gmail.com">店舗へお問い合わせ</a>ください。その日に説明を受けられるか、何時ごろに来店すればよいかを事前に確認できます。先に用語を見ておきたい方は、<a href="beginner.html#rules-title">テキサスホールデムの基本</a>でチェックやコールなどを確認できます。</p>
+          </details>
+          <details>
+            <summary>短時間だけでも遊べますか？</summary>
+            <p>空席があるリングゲームなら、途中から参加し、自分のタイミングで終えられます。退店したい時刻が決まっている方は、来店前に卓が開いているかを確認してください。トーナメントは進行によって滞在時間が変わるため、時間に余裕のある日にご参加ください。</p>
+          </details>
+          <details>
+            <summary>大会の開始時刻に間に合わないときは？</summary>
+            <p>開始時刻と受付締切は別に案内されることがあります。途中参加できるかは、<a href="games.html#schedule">大会日程</a>から当日のPokerFansページを開き、受付締切と参加条件を確認してください。判断に迷うときは、到着予定時刻を<a href="tel:+81355455654">店舗へ電話</a>で伝えてご確認ください。</p>
+          </details>
+          <details>
+            <summary>お店はどこにありますか？</summary>
+            <p>赤坂見附駅から徒歩1分、東京都港区赤坂3-10-3の黛ビル3階です。<a href="access.html#visit">店舗情報・アクセス</a>の地図で、出発前にビルの場所を確認できます。大会に参加する場合は、移動時間に加えて受付の時間も見込んでおくと安心です。</p>
+          </details>
+          <details>
+            <summary>PokerFansで大会を予約したら、受付で何を伝えますか？</summary>
+            <p>黛ビル3階の受付で、予約した大会名とPokerFansのポーカーID、ニックネームをお伝えください。大会名や開始時刻が分かるように、予約した大会のページをスマートフォンですぐ開ける状態にしておくと受付がスムーズです。</p>
+          </details>
+          <details>
+            <summary>大会がある日でもリングゲームはできますか？</summary>
+            <p>大会の進行によっては、リング卓が開かない場合があります。<a href="games.html#ring-join">リングゲームの参加案内</a>を参照し、遊びたい時間帯に卓が開くか、空席があるかを来店前に店舗へお尋ねください。</p>
+          </details>
+          <details>
+            <summary>大会でチップがなくなったら、もう一度参加できますか？</summary>
+            <p>再参加の可否や締切、追加でかかる参加費は、大会ごとのルールで確認してください。<a href="games.html#schedule">開催日程</a>から出たい回のPokerFansページを開き、「リエントリー」の案内を探すと確認しやすくなります。</p>
+          </details>
+          <details>
+            <summary>持ち物や支払い方法はどこで確認できますか？</summary>
+            <p>初めて来店する場合や大会に出る場合は、当日の案内で持参するものや支払い方法をご確認ください。案内に記載が見つからなければ、参加予定のゲームや大会名、来店予定時刻を添えて<a href="tel:+81355455654">店舗にお問い合わせ</a>ください。</p>
+          </details>
         </div>
       </div>
     </section>
 
   </main>
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="shell foot-main">
-      <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span>いわし赤坂</span></a>
-      <div><strong>Poker House いわし赤坂</strong><p>東京都港区赤坂3-10-3 黛ビル3F<br>赤坂見附駅から徒歩1分</p></div>
-      <a href="https://x.com/iwashi_poker" class="social-link" aria-label="いわし赤坂 公式X">𝕏</a>
+      <div class="foot-location">
+        <a class="small-brand foot-brand" href="./" aria-label="いわし赤坂 トップ">
+          <img src="assets/fish-print.png" width="445" height="143" alt="">
+          <span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span>
+        </a>
+        <p class="foot-station">赤坂見附駅から徒歩1分</p>
+        <p>東京都港区赤坂3-10-3 黛ビル3F</p>
+        <a class="foot-map" href="https://www.google.com/maps/search/?api=1&amp;query=東京都港区赤坂3-10-3+黛ビル">地図を開く<span aria-hidden="true">↗</span></a>
+        <iframe class="foot-map-embed" loading="lazy" title="いわし赤坂の店舗地図" src="https://maps.google.com/maps?q=東京都港区赤坂3-10-3黛ビル&amp;z=17&amp;output=embed" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div>
+        <h2 class="foot-heading">営業時間</h2>
+        <dl class="foot-hours">
+          <div><dt>平日</dt><dd>17:00〜翌5:00</dd></div>
+          <div><dt>土日</dt><dd>13:00〜翌5:00</dd></div>
+        </dl>
+        <h2 class="foot-heading foot-contact">お問い合わせ</h2>
+        <a class="foot-phone" href="tel:+81355455654">03-5545-5654</a>
+      </div>
+      <div class="foot-menu">
+        <h2 class="foot-heading">サイトメニュー</h2>
+        <nav class="foot-nav" aria-label="フッターナビゲーション">
+          <a href="beginner.html">初めての方へ</a>
+          <a href="games.html#schedule">大会スケジュール</a>
+          <a href="games.html">ゲーム・料金</a>
+          <a href="faq.html" aria-current="page">よくある質問</a>
+          <a href="access.html">アクセス</a>
+        </nav>
+        <a class="foot-social" href="https://x.com/iwashi_poker"><span aria-hidden="true">𝕏</span>店舗公式X</a>
+      </div>
     </div>
-    <div class="foot-bottom"><nav aria-label="フッターナビゲーション"><a href="beginner.html">初めての方へ</a><a href="tournaments.html">大会スケジュール</a><a href="games.html">ゲーム・料金</a><a href="access.html">アクセス</a></nav><small>Poker House いわし赤坂</small></div>
+    <div class="shell foot-bottom">
+      <a href="#top">ページ上部へ <span aria-hidden="true">↑</span></a>
+    </div>
   </footer>
 </body>
 </html>

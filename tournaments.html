@@ -7,13 +7,14 @@
   <meta name="theme-color" content="#111b23">
   <title>トーナメント｜Poker House いわし赤坂</title>
   <link rel="icon" href="assets/mark.png">
-  <link rel="stylesheet" href="style.css?v=faq-alignment">
-  <link rel="stylesheet" href="details.css?v=subpage-content">
-  <link rel="stylesheet" href="calendar.css?v=archive-cards">
+  <script src="theme.js?v=theme-switch"></script>
+  <link rel="stylesheet" href="style.css?v=1bad10ea63">
+  <link rel="stylesheet" href="details.css?v=fdc7b3c18d">
+  <link rel="stylesheet" href="calendar.css?v=plain-arrows">
   <script src="schedule.js?v=archive-cards" defer></script>
   <script src="site.js?v=mobile-menu-transition" defer></script>
 </head>
-<body class="detail-page">
+<body id="top" class="detail-page">
   <a class="skip" href="#main">本文へ移動</a>
   <header class="masthead">
     <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span></a>
@@ -23,16 +24,17 @@
       <a href="beginner.html">初めての方へ</a>
       <a href="faq.html">よくある質問</a>
     </nav>
-    <a class="header-schedule" href="tournaments.html" aria-current="page" aria-label="大会スケジュール">
+    <a class="header-schedule" href="games.html#schedule" aria-label="大会スケジュール">
       <span aria-hidden="true">♠</span><span class="schedule-full">大会スケジュール</span><span class="schedule-short">大会</span>
     </a>
+    <button class="theme-toggle" type="button" hidden><span class="theme-indicator" aria-hidden="true"></span></button>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く"><span></span><span></span><span></span></button>
     <nav id="mobile-menu" class="mobile-menu" aria-label="メインメニュー" hidden>
       <a class="menu-item" href="./"><span lang="en">TOP</span><small>トップページ</small></a>
       <a class="menu-item" href="games.html"><span lang="en">GAMES</span><small>ゲーム・料金</small></a>
       <a class="menu-item" href="beginner.html"><span lang="en">FIRST VISIT</span><small>初めての方へ</small></a>
       <a class="menu-item" href="faq.html"><span lang="en">FAQ</span><small>よくある質問</small></a>
-      <a class="primary-link" href="tournaments.html" aria-current="page">大会スケジュール</a>
+      <a class="primary-link" href="games.html#schedule">大会スケジュール</a>
     </nav>
   </header>
 
@@ -42,17 +44,16 @@
       <div class="shell tournaments-head">
         <div>
           <h2 id="schedule-title" class="detail-calendar-title">開催日程</h2>
-          <p class="jp-label">本日・近日の大会スケジュール</p>
         </div>
-        <a class="round-link calendar-link" href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗カレンダー<span aria-hidden="true" class="circle-arrow">→</span></a>
+        <a class="round-link calendar-link" href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗カレンダー<span aria-hidden="true" class="arrow-icon"></span></a>
       </div>
       <p id="calendar-status" class="shell" aria-live="polite"></p>
       <div id="calendar" class="calendar-rail" role="region" aria-label="大会カード" tabindex="0">
         <p>開催日・参加費・受付締切は<a href="https://pokerfans.jp/clubs/6134?_lang=ja">店舗の大会カレンダー</a>で確認できます。</p>
       </div>
       <div class="calendar-controls" hidden>
-        <button type="button" aria-label="前の大会を表示" aria-controls="calendar" id="events-prev">←</button>
-        <button type="button" aria-label="次の大会を表示" aria-controls="calendar" id="events-next">→</button>
+        <button type="button" aria-label="前の大会を表示" aria-controls="calendar" id="events-prev"><span class="arrow-icon is-prev" aria-hidden="true"></span></button>
+        <button type="button" aria-label="次の大会を表示" aria-controls="calendar" id="events-next"><span class="arrow-icon" aria-hidden="true"></span></button>
       </div>
       <p class="shell" id="calendar-updated"></p>
     </section>
@@ -68,13 +69,42 @@
       <p class="detail-source"><a href="https://pokerfans.jp/events/2524820?_lang=ja">店舗掲載の大会レギュレーション例 ↗</a></p>
     </section>
   </main>
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="shell foot-main">
-      <a href="./" class="small-brand" aria-label="いわし赤坂 トップ"><img src="assets/fish-print.png" width="445" height="143" alt=""><span>いわし赤坂</span></a>
-      <div><strong>Poker House いわし赤坂</strong><p>東京都港区赤坂3-10-3 黛ビル3F<br>赤坂見附駅から徒歩1分</p></div>
-      <a href="https://x.com/iwashi_poker" class="social-link" aria-label="いわし赤坂 公式X">𝕏</a>
+      <div class="foot-location">
+        <a class="small-brand foot-brand" href="./" aria-label="いわし赤坂 トップ">
+          <img src="assets/fish-print.png" width="445" height="143" alt="">
+          <span class="masthead-wordmark"><small lang="en">POKER HOUSE</small><span>いわし赤坂</span></span>
+        </a>
+        <p class="foot-station">赤坂見附駅から徒歩1分</p>
+        <p>東京都港区赤坂3-10-3 黛ビル3F</p>
+        <a class="foot-map" href="https://www.google.com/maps/search/?api=1&amp;query=東京都港区赤坂3-10-3+黛ビル">地図を開く<span aria-hidden="true">↗</span></a>
+        <iframe class="foot-map-embed" loading="lazy" title="いわし赤坂の店舗地図" src="https://maps.google.com/maps?q=東京都港区赤坂3-10-3黛ビル&amp;z=17&amp;output=embed" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div>
+        <h2 class="foot-heading">営業時間</h2>
+        <dl class="foot-hours">
+          <div><dt>平日</dt><dd>17:00〜翌5:00</dd></div>
+          <div><dt>土日</dt><dd>13:00〜翌5:00</dd></div>
+        </dl>
+        <h2 class="foot-heading foot-contact">お問い合わせ</h2>
+        <a class="foot-phone" href="tel:+81355455654">03-5545-5654</a>
+      </div>
+      <div class="foot-menu">
+        <h2 class="foot-heading">サイトメニュー</h2>
+        <nav class="foot-nav" aria-label="フッターナビゲーション">
+          <a href="beginner.html">初めての方へ</a>
+          <a href="games.html#schedule">大会スケジュール</a>
+          <a href="games.html">ゲーム・料金</a>
+          <a href="faq.html">よくある質問</a>
+          <a href="access.html">アクセス</a>
+        </nav>
+        <a class="foot-social" href="https://x.com/iwashi_poker"><span aria-hidden="true">𝕏</span>店舗公式X</a>
+      </div>
     </div>
-    <div class="foot-bottom"><nav aria-label="フッターナビゲーション"><a href="beginner.html">初めての方へ</a><a href="tournaments.html">大会スケジュール</a><a href="games.html">ゲーム・料金</a><a href="access.html">アクセス</a></nav><small>Poker House いわし赤坂</small></div>
+    <div class="shell foot-bottom">
+      <a href="#top">ページ上部へ <span aria-hidden="true">↑</span></a>
+    </div>
   </footer>
 </body>
 </html>
