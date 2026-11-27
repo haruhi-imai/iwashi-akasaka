@@ -35,12 +35,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .skip { position: fixed; z-index: 50; inset: 8px auto auto 8px; padding: 8px 16px; background: #fff; transform: translateY(-160%); }
 .skip:focus { transform: none; }
 .masthead {
+  --nav-gap: clamp(22px, 2.65vw, 56px);
   position: sticky;
   z-index: 20;
   top: 0;
   isolation: isolate;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto auto;
+  column-gap: var(--nav-gap);
   align-items: center;
   height: var(--masthead-height);
   margin-bottom: calc(-1 * var(--masthead-height));
@@ -70,7 +72,7 @@ body.menu-open .masthead::before { opacity: 0; }
 .masthead > .small-brand img { width: clamp(42px, 3.65vw, 75px); filter: none; }
 .masthead-wordmark { display: grid; gap: 2px; font: 700 clamp(17px,1.35vw,26px)/1.25 "Hiragino Mincho ProN", "Yu Mincho", serif; }
 .masthead-wordmark small { font: 600 clamp(8px,.65vw,13px)/1.1 Georgia, serif; letter-spacing: .27em; }
-.top-links { display: flex; align-items: center; gap: clamp(22px, 2.65vw, 56px); }
+.top-links { display: flex; align-items: center; gap: var(--nav-gap); }
 .top-links a { min-height: 44px; align-content: center; text-decoration: none; font-size: clamp(14px, 1.04vw, 21px); font-weight: 700; white-space: nowrap; }
 .top-links a:hover, .menu-item:hover small { text-decoration: underline; }
 .header-schedule { justify-self: end; display: inline-flex; align-items: center; gap: .55em; min-height: 44px; padding: 5px 14px; border: 1px solid currentColor; border-radius: 7px; text-decoration: none; font-weight: 700; white-space: nowrap; }
@@ -141,12 +143,21 @@ body.menu-open .masthead::before { opacity: 0; }
 /* Room, visit questions and footer */
 .room-section { border-top: 1px solid #ececf1; }
 .room-heading { padding-block: clamp(72px,8.33vw,120px) 40px; }
-.room-layout { display: grid; grid-template-columns: 1fr 1fr; }
+.room-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 32px);
+}
+.room-section > .room-layout { margin-block-end: clamp(24px, 4vw, 56px); }
 .room-map-panel {
   position: relative;
-  min-height: clamp(320px, 36vw, 500px);
+  min-height: 280px;
+  border: 1px solid #e1e2e9;
+  border-radius: 12px;
+  overflow: hidden;
   background: #f3f4f6;
 }
+.room-map-panel:focus-within { outline: 3px solid #3685b5; outline-offset: 4px; }
 .room-map-panel iframe {
   position: absolute;
   inset: 0;
@@ -154,17 +165,28 @@ body.menu-open .masthead::before { opacity: 0; }
   height: 100%;
   border: 0;
 }
-.room-info { padding: clamp(32px,4.44vw,64px); background: #f6f6f9; }
+.room-info { padding: clamp(24px, 3vw, 48px); }
 .room-info h3 { color: var(--accent); font-size: clamp(21px,2.2vw,32px); line-height: 1.4; }
 .room-info > p { margin-top: 8px; font-size: 14px; }
 .room-info dl { margin-block: 24px; }
 .room-info dl div { display: grid; grid-template-columns: 7em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #d8d9e1; font-size: 14px; }
 .room-info dt { font-weight: 700; }
 .room-info dd { overflow-wrap: anywhere; }
-.room-actions { display: flex; align-items: center; gap: 28px; }
+.room-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+.room-map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 208px;
+  padding-inline: 20px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+.room-map-link span { font: 24px/1 Arial, sans-serif; }
 .room-actions > a:last-child { color: var(--accent); font-size: 13px; }
-.visitor-guide { padding-block: clamp(72px,8.33vw,120px); }
-.guide-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6%; }
+.visitor-guide { padding-block: clamp(56px, 6.5vw, 92px); }
+.guide-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr); gap: 3%; }
 .questions details { border-bottom: 1px solid #dadbe3; }
 .questions details:first-child { border-top: 1px solid #dadbe3; }
 .questions summary { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; color: var(--accent); font-weight: 700; padding: 20px 0; cursor: pointer; list-style: none; }
@@ -183,7 +205,7 @@ body.menu-open .masthead::before { opacity: 0; }
 
 @media(max-width: 1024px) {
   :root { --masthead-height: 56px; }
-  .masthead { grid-template-columns: 1fr auto auto; padding-inline: 16px 4px; gap: 8px; }
+  .masthead { padding-inline: 16px 4px; gap: 8px; }
   .small-brand { gap: 6px; font-size: 16px; }
   .small-brand img { width: 40px; }
   .top-links { display: none; }
@@ -195,7 +217,8 @@ body.menu-open .masthead::before { opacity: 0; }
   .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6px) rotate(45deg); }
   .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-6px) rotate(-45deg); }
-  .mobile-menu:not([hidden]) { display: flex; flex-direction: column; align-items: flex-start; gap: 36px; position: fixed; inset: var(--masthead-height) 0 0; padding: clamp(28px,7.5vh,64px) 48px; background: #fff; color: var(--accent); overflow: auto; overscroll-behavior: contain; }
+  .mobile-menu { flex-direction: column; align-items: flex-start; gap: 36px; position: fixed; inset: var(--masthead-height) 0 0; padding: clamp(28px,7.5vh,64px) 48px; background: #fff; color: var(--accent); overflow: auto; overscroll-behavior: contain; }
+  .mobile-menu:not([hidden]) { display: flex; }
   .mobile-menu .menu-item span { font-size: 24px; }
   .mobile-menu .primary-link { margin-top: 4px; }
   body.menu-open { overflow: hidden; }
@@ -207,6 +230,16 @@ body.menu-open .masthead::before { opacity: 0; }
   .scroll-hint { right: 16px; bottom: 36px; }
   .scroll-hint i { height: 120px; }
   .film-utility { left: 12px; bottom: 12px; }
+}
+@media (max-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform .42s cubic-bezier(.4, 0, .2, 1), display .42s allow-discrete;
+  }
+  .mobile-menu:not([hidden]) { transform: translateX(0); }
+  @starting-style {
+    .mobile-menu:not([hidden]) { transform: translateX(100%); }
+  }
 }
 @media(max-width: 767px) {
   .hero-brand { width: min(280px,82%); }

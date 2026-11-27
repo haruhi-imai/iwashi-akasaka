@@ -4,9 +4,11 @@
   const menu = document.querySelector("#mobile-menu");
   const toggle = document.querySelector(".menu-toggle");
   const desktop = window.matchMedia("(min-width: 1025px)");
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   function setMenu(open) {
     menu.hidden = !open;
+    menu.inert = !open;
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
     document.body.classList.toggle("menu-open", open);
@@ -27,6 +29,36 @@
   desktop.addEventListener("change", () => setMenu(false));
   window.addEventListener("hashchange", () => setMenu(false));
 
+  document.querySelectorAll(".questions details").forEach(question => {
+    const summary = question.querySelector("summary");
+    const answer = question.querySelector("p");
+    let animation;
+    let expanding;
+
+    summary.addEventListener("click", event => {
+      if (motion.matches && !animation) return;
+      event.preventDefault();
+
+      const open = animation ? !expanding : !question.open;
+      const start = question.getBoundingClientRect().height;
+      animation?.cancel();
+      question.open = true;
+      const fullHeight = question.getBoundingClientRect().height;
+      const end = open ? fullHeight : fullHeight - answer.getBoundingClientRect().height;
+
+      expanding = open;
+      animation = question.animate({
+        height: [`${start}px`, `${end}px`],
+        overflow: ["clip", "clip"],
+      }, { duration: motion.matches ? 0 : 280, easing: "ease-in-out", fill: "both" });
+      animation.onfinish = () => {
+        question.open = open;
+        animation.cancel();
+        animation = undefined;
+      };
+    });
+  });
+
   // Detail pages share the navigation and have no background video.
   if (!hero) return;
 
@@ -39,7 +71,6 @@
   updateHeader();
 
   const video = document.querySelector(".hero-film");
-  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const control = document.querySelector(".film-control");
   const icon = control.querySelector("span");
 

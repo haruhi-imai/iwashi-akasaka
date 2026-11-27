@@ -1,32 +1,37 @@
 .games-area {
+  --games-inset: max(var(--gutter), calc((100cqw - var(--shell)) / 2));
+  container-type: inline-size;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
   grid-template-areas: "intro photos" "fees photos";
+  row-gap: 32px;
   background: #fff;
 }
 
 .games-intro,
 .games-fees {
-  padding-left: max(var(--gutter), calc((100vw - var(--shell)) / 2));
-  padding-right: clamp(32px, 5.55vw, 80px);
+  padding-inline: var(--games-inset) clamp(24px, 4vw, 64px);
 }
 
 .games-intro {
   grid-area: intro;
-  align-self: end;
-  padding-top: clamp(72px, 8.333vw, 120px);
+  padding-top: clamp(32px, 5vh, 56px);
 }
 
 .games-lead {
-  margin: 40px 0 24px;
+  margin: 24px 0 18px;
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.8;
 }
 
 .game-photos {
   grid-area: photos;
+  align-self: start;
   display: grid;
-  grid-template-rows: 1.15fr 1fr;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-block: clamp(24px, 3vw, 48px);
+  margin-inline-end: var(--games-inset);
+  grid-auto-rows: minmax(clamp(196px, 38svh, 294px), auto);
 }
 
 .game-photo {
@@ -35,7 +40,8 @@
   align-items: flex-end;
   overflow: hidden;
   isolation: isolate;
-  min-height: clamp(280px, 26vw, 400px);
+  border-radius: clamp(14px, 1.5vw, 22px);
+  box-shadow: 0 6px 18px rgb(15 24 40 / 14%);
   color: #fff;
   background: #152734;
   text-decoration: none;
@@ -58,18 +64,18 @@
 .game-photo::after {
   content: "";
   z-index: -1;
-  background: linear-gradient(0deg, rgb(9 17 31 / 88%), rgb(9 17 31 / 52%) 30%, transparent 70%);
+  background: linear-gradient(0deg, rgb(9 17 31 / 92%), rgb(9 17 31 / 60%) 45%, transparent 85%);
 }
 
-.game-photo-text { padding: 32px; }
+.game-photo-text { padding: clamp(16px, 2vw, 28px); }
 .game-photo h3 { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.2; }
-.game-photo p { font-size: 14px; line-height: 1.5; margin-top: 12px; }
+.game-photo p { font-size: 14px; line-height: 1.5; margin-top: 8px; }
 
 .game-photo-action {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 10px;
   font-size: 13px;
   font-weight: 700;
 }
@@ -90,8 +96,7 @@
 .games-fees {
   grid-area: fees;
   align-self: start;
-  padding-top: 56px;
-  padding-bottom: clamp(72px, 8.333vw, 120px);
+  padding-bottom: clamp(32px, 5vw, 64px);
 }
 
 .games-fees h3 { font-size: 21px; line-height: 1.5; }
@@ -122,13 +127,13 @@
   .games-area {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "intro" "photos" "fees";
+    row-gap: 24px;
   }
 
-  .games-intro, .games-fees { padding-inline: 24px; }
-  .games-intro { padding-top: 72px; padding-bottom: 48px; }
-  .games-lead { margin: 32px 0 24px; }
-  .game-photos { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; }
-  .game-photo { width: 100%; min-width: 0; min-height: 252px; aspect-ratio: 1.5; }
-  .game-photo-text { padding: 24px; }
-  .games-fees { padding-block: 48px 72px; }
+  .games-intro, .games-fees { padding-inline: var(--gutter); }
+  .game-photos {
+    grid-auto-rows: minmax(230px, auto);
+    margin-block: 0;
+    margin-inline: var(--gutter);
+  }
 }

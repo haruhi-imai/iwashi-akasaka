@@ -75,6 +75,9 @@ def main():
                 event["poster"] = poster
     data = {"checkedAt": now.isoformat(timespec="minutes"),
             "events": sorted(events, key=lambda event: event["start"])}
+    if OUTPUT.exists():
+        previous = json.loads(OUTPUT.read_text())
+        data["referenceEvents"] = previous.get("referenceEvents", [])
     OUTPUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 

@@ -75,6 +75,7 @@
 .event-card:hover .calendar-event-name { text-decoration: underline; text-decoration-thickness: 1px; }
 .calendar-date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-top: 20px; font-weight: 600; font-size: 14px; color: #50525e; }
 .event-period { color: var(--accent); font-size: 12px; font-weight: 750; }
+.event-period.is-archive { padding: 2px 8px; border-radius: 4px; background: #ececf4; }
 .calendar-event-name { margin: 10px 0; font-size: 20px; line-height: 1.45; overflow-wrap: anywhere; }
 .event-metrics { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; line-height: 1.6; }
 .event-metrics > span { display: inline-flex; gap: 6px; align-items: baseline; }

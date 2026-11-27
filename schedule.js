@@ -6,6 +6,7 @@ const nextEvent = document.getElementById("events-next");
 const controls = previousEvent.parentElement;
 const format = options => new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", ...options });
 const dayLabel = format({ month: "long", day: "numeric", weekday: "short" });
+const archiveDayLabel = format({ year: "numeric", month: "long", day: "numeric", weekday: "short" });
 const clock = format({ hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 const tokyoDay = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" });
 const amount = new Intl.NumberFormat("ja-JP");
@@ -41,21 +42,24 @@ function metric(label, value) {
   return node;
 }
 
-function eventCard(event, now, isToday) {
+function eventCard(event, now, period) {
   const start = new Date(event.start);
   const cutoff = event.cutoff ? new Date(event.cutoff) : null;
   const card = element("a", "event-card");
   card.href = "https://pokerfans.jp/events/" + event.id + "?_lang=ja";
   const date = element("p", "calendar-date");
-  const when = element("time", "", dayLabel.format(start) + " " + clock.format(start) + " 開始");
+  const isArchive = period === "過去の開催例";
+  const label = isArchive ? archiveDayLabel : dayLabel;
+  const when = element("time", "", label.format(start) + " " + clock.format(start) + " 開始");
   when.dateTime = event.start;
-  const period = isToday && tokyoDay.format(start) !== tokyoDay.format(now) ? "前日から開催" : isToday ? "本日" : "近日";
-  date.append(element("strong", "event-period", period), when);
+  const badge = element("strong", "event-period", period);
+  if (isArchive) badge.classList.add("is-archive");
+  date.append(badge, when);
   let deadline = "公式案内へ";
   if (cutoff) {
     const nextDay = tokyoDay.format(cutoff) !== tokyoDay.format(start);
     deadline = (nextDay ? "翌" : "") + clock.format(cutoff);
-    if (cutoff <= now) deadline += "（終了）";
+    if (!isArchive && cutoff <= now) deadline += "（終了）";
   }
   const metrics = element("p", "event-metrics");
   metrics.append(metric("通常参加費", Number.isFinite(event.fee) ? amount.format(event.fee) + "円" : "公式案内へ"),
@@ -86,6 +90,23 @@ function moveCard(direction) {
 
 let displayedPeriod;
 
+function archiveCards(data, scheduled, today, now) {
+  const slots = Math.max(0, 4 - scheduled.length);
+  const displayedNames = new Set(scheduled.map(event => event.name.toLowerCase()));
+  const past = [...data.events, ...(data.referenceEvents ?? [])]
+    .filter(event => tokyoDay.format(new Date(event.start)) < today)
+    .sort((a, b) => new Date(b.start) - new Date(a.start));
+  const examples = [];
+  for (const event of past) {
+    if (examples.length === slots) break;
+    const name = event.name.toLowerCase();
+    if (displayedNames.has(name)) continue;
+    displayedNames.add(name);
+    examples.push(eventCard(event, now, "過去の開催例"));
+  }
+  return examples;
+}
+
 function render(data) {
   const now = new Date();
   const today = tokyoDay.format(now);
@@ -98,10 +119,16 @@ function render(data) {
   });
   const upcoming = data.events.filter(event => event.start.slice(0, 10) > today);
   const focused = calendar.contains(document.activeElement) ? document.activeElement.href : null;
-  calendar.replaceChildren(...current.map(event => eventCard(event, now, true)), ...upcoming.map(event => eventCard(event, now, false)));
+  const examples = archiveCards(data, [...current, ...upcoming], today, now);
+  calendar.replaceChildren(
+    ...current.map(event => eventCard(event, now, event.start.slice(0, 10) === today ? "本日" : "前日から開催")),
+    ...upcoming.map(event => eventCard(event, now, "近日")),
+    ...examples,
+  );
   calendar.hidden = !calendar.childElementCount;
   if (focused) Array.from(calendar.children).find(card => card.href === focused)?.focus({ preventScroll: true });
-  calendarStatus.textContent = !current.length && !upcoming.length ? "掲載を確認できた大会はまだありません。追加開催は店舗カレンダーをご確認ください。"
+  calendarStatus.textContent = examples.length ? "「過去の開催例」は参考情報です。最新の開催予定は店舗カレンダーをご確認ください。"
+    : !current.length && !upcoming.length ? "掲載を確認できた大会はまだありません。追加開催は店舗カレンダーをご確認ください。"
     : !current.length ? "本日の掲載はありません。近日の開催予定をご案内します。" : "";
   const checked = new Date(data.checkedAt);
   updated.textContent = "店舗カレンダー確認　" + dayLabel.format(checked) + " " + clock.format(checked)
