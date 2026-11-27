@@ -16,9 +16,9 @@
 
   function restore() {
     try {
-      apply(localStorage.getItem(key) === "dark");
+      apply(localStorage.getItem(key) !== "light");
     } catch {
-      apply(root.dataset.theme === "dark");
+      apply(root.dataset.theme !== "light");
     }
   }
 
